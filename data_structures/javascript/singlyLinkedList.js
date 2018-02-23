@@ -120,6 +120,51 @@ class SinglyLinkedList {
     }
 
     //TODO: removeNodeWithData && removeNodeWithDataStrict
+    removeNodeWithData(data) {
+        let currentNode = this.head;
+        let deletedNode = null;
+        let previousNode = null;
 
+        if (!currentNode) {
+            return null;
+        }
 
+        while (currentNode.next && currentNode.next.data != data) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode.data == data) {
+            previousNode.next = currentNode.next;
+            deletedNode = currentNode;
+            currentNode = null;
+            return deletedNode;
+        } else {
+            return null;
+        }
+    }
+
+    removeNodeWithDataStrict(data) {
+        let currentNode = this.head;
+        let deletedNode = null;
+        let previousNode = null;
+
+        if (!currentNode) {
+            return null;
+        }
+
+        while (currentNode.next && currentNode.next.data !== data) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode.data === data) {
+            previousNode.next = currentNode.next;
+            deletedNode = currentNode;
+            currentNode = null;
+            return deletedNode;
+        } else {
+            return null;
+        }
+    }
 }
