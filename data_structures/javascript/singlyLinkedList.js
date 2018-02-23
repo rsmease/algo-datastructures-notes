@@ -1,4 +1,4 @@
-class Node {
+class SinglyLinkedNode {
     constructor(data) {
         this.data = data;
         this.next = null;
@@ -13,7 +13,7 @@ class SinglyLinkedList {
 
     //O(this.length)
     add(data) {
-        const newNode = new Node(data);
+        const newNode = new SinglyLinkedNode(data);
 
         let currentNode = this.head;
 
@@ -89,7 +89,7 @@ class SinglyLinkedList {
         let currentNode = this.head;
         let currentPosition = 0;
         let previousNode = null;
-        let nodeToDelete = null;
+        let NodeToDelete = null;
         let deletedNode = null;
 
         if (position > this.length || position < 1 || this.length === 0) {
@@ -104,18 +104,19 @@ class SinglyLinkedList {
             this.length--;
             return deletedNode;
         } else {
-            //start position at 0 so that we break when nodeToDelete is currentNode.next
+            //start position at 0 so that we break when NodeToDelete is currentNode.next
             //and not currentNode
             while (currentPosition < position) {
                 previousNode = currentNode;
-                nodeToDelete = currentNode.next;
+                NodeToDelete = currentNode.next;
                 currentPosition++;
             }
 
-            previousNode.next = nodeToDelete.next;
-            deletedNode = nodeToDelete;
+            previousNode.next = NodeToDelete.next;
+            deletedNode = NodeToDelete;
             //set to null to formally remove from linkedList
-            nodeToDelete = null;
+            NodeToDelete = null;
+            this.length--;
             return deletedNode;
         }
     }
@@ -139,6 +140,7 @@ class SinglyLinkedList {
             previousNode.next = currentNode.next;
             deletedNode = currentNode;
             currentNode = null;
+            this.length--;
             return deletedNode;
         } else {
             return null;
@@ -164,6 +166,7 @@ class SinglyLinkedList {
             previousNode.next = currentNode.next;
             deletedNode = currentNode;
             currentNode = null;
+            this.length--;
             return deletedNode;
         } else {
             return null;
