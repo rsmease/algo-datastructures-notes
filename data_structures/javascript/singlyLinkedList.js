@@ -11,7 +11,7 @@ class SinglyLinkedList {
         this.head = null;
     }
 
-    //O(n)
+    //O(this.length)
     add(data) {
         const newNode = new Node(data);
 
@@ -31,6 +31,7 @@ class SinglyLinkedList {
         }
     }
 
+    //O(position)
     findNodeAtPosition(position) {
         let currentNode = this.head;
         let currentPosition = 1;
@@ -47,7 +48,7 @@ class SinglyLinkedList {
         return currentNode;
     }
 
-    //O(n)
+    //O(this.length)
     findNodeWithData(data) {
         let currentNode = this.head;
 
@@ -65,7 +66,7 @@ class SinglyLinkedList {
         }
     }
 
-    //O(n)
+    //O(this.length)
     findNodeWithDataStrict(data) {
         let currentNode = this.head;
 
@@ -83,7 +84,7 @@ class SinglyLinkedList {
         }
     }
 
-    //O(n)
+    //O(position)
     removeNodeAtPosition(position) {
         let currentNode = this.head;
         let currentPosition = 0;
@@ -119,7 +120,7 @@ class SinglyLinkedList {
         }
     }
 
-    //TODO: removeNodeWithData && removeNodeWithDataStrict
+    //O(this.length)
     removeNodeWithData(data) {
         let currentNode = this.head;
         let deletedNode = null;
@@ -144,6 +145,7 @@ class SinglyLinkedList {
         }
     }
 
+    //O(this.length)
     removeNodeWithDataStrict(data) {
         let currentNode = this.head;
         let deletedNode = null;
