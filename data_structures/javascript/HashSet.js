@@ -1,6 +1,7 @@
 //Why use a HashSet?
 
 //Use a hash set when you aren't really storing values, you're just storing the presence of absence of keys. If you are just looking a set of numbers, consider using an array instead, which would take up more space for very large numbers, but which would ultimately have an easier API and (in theory) faster better average run times if we consider the O(n) worst case for a HashMap
+//Intersections, unions and differences/complements are also better peformed on an array, beceause they allow for direct in-order traversal, allowing for O(Math.max(a,b)) comparisons on sorted arrays, rather than O(a*b) comparisons for unsorted HashMaps
 
 import HashTable from './HashTable.js';
 
