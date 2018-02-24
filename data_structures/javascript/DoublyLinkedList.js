@@ -56,6 +56,20 @@ class DoublyLinedList {
         const medianPosition = Math.floor(this.length / 2);
         let currentNode, previousNode, nextNode, nodeToDelete, deletedNode;
 
+        if (position === 1) {
+            nodeToDelete = this.head;
+            this.head = nodeToDelete.next;
+            deletedNode = nodeToDelete;
+            nodeToDelete = null;
+            return deletedNode;
+        } else if (position === this.length) {
+            nodeToDelete = this.tail;
+            this.tail = nodeToDelete.prev;
+            deletedNode = nodeToDelete;
+            nodeToDelete = null;
+            return deletedNode;
+        }
+
         if (position >= medianPosition) {
             currentNode = this.tail;
             currentPosition = this.length;
@@ -88,4 +102,90 @@ class DoublyLinedList {
     }
 
     //TODO: test remove at position; write findNodeWithData, removeNodeWithData;
+
+    findNodeWithData(data) {
+
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode = this.head;
+
+        while (currentNode.next && currentNode.next != data) {
+            currentNode = currentNode.next;
+        }
+        if (currentNode.next.data == data) {
+            return currentNode.next;
+        } else {
+            return null;
+        }
+    }
+
+    findNodeWithDataStrict(data) {
+
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode = this.head;
+
+        while (currentNode.next && currentNode.next !== data) {
+            currentNode = currentNode.next;
+        }
+        if (currentNode.next.data === data) {
+            return currentNode.next;
+        } else {
+            return null;
+        }
+    }
+
+    deleteNodeWithData(data) {
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode, previousNode, nextNode, nodeToDelete, deletedNode;
+
+        while (currentNode.next && currentNode.next != data) {
+            currentNode = currentNode.next;
+        }
+        if (currentNode.next.data == data) {
+            previousNode = currentNode;
+            nodeToDelete = currentNode.next;
+            nextNode = nodeToDelete.next;
+
+            previousNode.next = nextNode;
+            nextNode.prev = previousNode;
+            deletedNode = nodeToDelete;
+            nodeToDelete = null;
+            return deletedNode;
+        } else {
+            return null;
+        }
+    }
+
+    deleteNodeWithDataStrict(data) {
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode, previousNode, nextNode, nodeToDelete, deletedNode;
+
+        while (currentNode.next && currentNode.next !== data) {
+            currentNode = currentNode.next;
+        }
+        if (currentNode.next.data === data) {
+            previousNode = currentNode;
+            nodeToDelete = currentNode.next;
+            nextNode = nodeToDelete.next;
+
+            previousNode.next = nextNode;
+            nextNode.prev = previousNode;
+            deletedNode = nodeToDelete;
+            nodeToDelete = null;
+            return deletedNode;
+        } else {
+            return null;
+        }
+    }
 }
