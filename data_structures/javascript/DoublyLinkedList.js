@@ -1,3 +1,12 @@
+//For value of a linked list in general, see SinglyLinkedList
+
+
+//Singly vs. Doubly Linked Lists
+//Singly linked list carry less memory per node (one pointers instead of two)
+//Complexity of insertion and deletion at a known position for a singly linked list is O(n) for both
+//If we care about search performance, a DDL is better; if we care about space more, a SLL is better
+//In B-trees and heap trees, we need a doubly linked list to rearrange nodes
+
 class DoublyLinkedNode {
     constructor(data) {
         this.data = data;

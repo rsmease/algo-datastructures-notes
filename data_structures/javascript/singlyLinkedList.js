@@ -1,3 +1,16 @@
+//Value of Linked List
+//No need for a fixed allocation of memory in a defined space, because the nodes can be scattered in memory dynamically
+
+//When would we want to use this?
+//If we don't know how much space we'll need, this structure makes more sense than an array, which requires that we allocate a fixed amount of memory
+//Linked lists have no added memory for storage, but they do have added memory for the pointers to the nodes in the array (this is less than the added memory storage allocation, in general)
+//Adding an element to the head of the list is very easy, whereas with an array, it requires that we shift the position of all the subsequent elements
+//Adding an element to the end of an array is an O(1) operation if we're using a dynamic ring buffer that tracks the current last-filled element, but O(current number of elements) if we do not have that ring buffer. Similarly, we have O(current number of elements) to insert into a singly linked list, and O(1) to insert at the end of an doubly-linked list
+//For insertion, different variations of these data structuers have various advantages, making them score roughly evenly.
+
+//When would we not want to use this? 
+//If we want constant time look up, we should use an array instead. Because arrays have a fixed starting memory address, they can be randomly accessed in O(1) time because the address of a locations are mathematically fixed in relation to this starting memory address.
+
 class SinglyLinkedNode {
     constructor(data) {
         this.data = data;
