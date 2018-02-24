@@ -1,3 +1,7 @@
+//Why use a HashSet?
+
+//Use a hash set when you aren't really storing values, you're just storing the presence of absence of keys. If you are just looking a set of numbers, consider using an array instead, which would take up more space for very large numbers, but which would ultimately have an easier API and (in theory) faster better average run times if we consider the O(n) worst case for a HashMap
+
 import HashTable from './HashTable.js';
 
 class HashNode {
