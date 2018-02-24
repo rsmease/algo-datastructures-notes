@@ -1,3 +1,20 @@
+//Why use Hash Tables
+
+//Hash tables are an associated array data structure, mapping keys to values
+//Allow for (amortized) constant time lookup, insertion and deletion, although the worst case remains O(n)
+
+//When we use a LList at each bucket to prevent overriding values in the case of collisions, it's called chaining
+//We can chain with something other than a linked list (e.g. binary search tree) if we think that they chances of collision are very high
+
+//When not to use Hash Tables
+
+//When you don't need to look up things quickly (use a linked list)
+//When the keys are integers and are within a small range (use an array)
+//Balanced Binary Search Trees can expand more efficiently
+//Binary Search Trees allow for faster in-order traversal of keys
+//Hash Tables' hashing functions are hard to generate: they can be either unwieldy or inefficient
+//If you can tolerate some overlap, a Bloom Filter is more memory efficient for representing a set
+
 class HashNode {
     constructor(key, value, next) {
         this.key = key;
