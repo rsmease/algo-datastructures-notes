@@ -3,14 +3,18 @@ class HashNode {
         this.key = key;
         this.value = value;
         this.next = next || null;
+        this.size = 0;
     }
 }
 
 class HashTable {
-    constructor(size) {
-        this.buckets = new Array(size);
+    constructor() {
+        this.size = 0;
+        this.buckets = [];
         this.numberOfBuckets = this.buckets.length;
     }
+
+
 
     //O(key.length)
     hash(key) {
@@ -22,56 +26,116 @@ class HashTable {
         return bucket;
     }
 
+    //O(key.length)
     checkKey(key) {
         if (typeof key === "object" || key == null) {
             throw new TypeError('Unallowed key type of object, null or undefined');
         }
 
-        return key.toString();
+        return typeof key === "string" ? key : key.toString();
     }
 
-    //O(key.length + targetIndex.length)
+    //O(key.length + this.size)
     insert(key, value) {
 
         const keyString = this.checkKey(key);
         const targetBucket = this.hash(keyString);
-        let targetIndex = this.buckets[targetBucket];
+        let currentNode = this.buckets[targetBucket];
 
-        if (!targetIndex) {
-            targetIndex = new HashNode(keyString, value);
-        } else if (targetIndex.key === keyString) {
-            targetIndex.value = value;
+        if (!currentNode) {
+            currentNode = new HashNode(keyString, value);
+            this.buckets[targetBucket] = currentNode;
+            this.size++;
+        } else if (currentNode.key === keyString) {
+            currentNode.value = value;
         } else {
-            while (targetIndex.next) {
-                if (targetIndex.key === keyString) {
-                    targetIndex.value = value;
+            while (currentNode.next) {
+                if (currentNode.key === keyString) {
+                    currentNode.value = value;
                     return;
                 }
+                currentNode = currentNode.next;
             }
-            targetIndex = targetIndex.next;
+            currentNode.next = new HashNode(keyString, value);
+            this.size++;
         }
-        targetIndex.next = new HashNode(keyString, value);
     }
 
+    //O(this.size)
     get(key) {
         const keyString = this.checkKey(key);
         const targetBucket = this.hash(keyString);
-        let targetIndex = this.buckets(targetBucket);
+        let currentNode = this.buckets(targetBucket);
 
-        if (!targetIndex) {
+        if (!currentNode) {
             return null;
         } else {
-            while (targetIndex) {
-                if (targetIndex.key === keyString) {
-                    return targetIndex.value;
+            while (currentNode) {
+                if (currentNode.key === keyString) {
+                    return currentNode.value;
                 }
-                targetIndex = targetIndex.next;
+                currentNode = currentNode.next;
             }
             return null;
         }
     }
 
+    //O(number of stored items in all buckets)
+    remove(key) {
+        const keyString = this.checkKey(key);
+        const targetBucket = this.hash(keyString);
+        let currentNode = this.buckets[targetBucket];
+        let previousNode;
 
+        if (!currentNode) {
+            return null;
+        } else if (currentNode.key === keyString) {
+            nodeToDelete = currentNode;
+            this.buckets[targetBucket] = currentNode.next;
+            deletedNode = nodeToDelete;
+            nodeToDelete = null;
+            return deletedNode;
+        } else {
+            while (currentNode) {
+                previousNode = currentNode;
+                currentNode = currentNode.next;
+                if (currentNode.key === keyString) {
+                    nodeToDelete = currentNode;
+                    previousNode.next = currentNode.next;
+                    deletedNode = nodeToDelete;
+                    nodeToDelete = null;
+                    return deletedNode;
+                }
+            }
+            return null;
+        }
+    }
 
+    //O(this.size)
+    keys() {
+        const keysArr = [];
+        for (let i = 0; i < this.numberOfBuckets; i++) {
+            let currentNode = this.buckets[i];
+            while (currentNode) {
+                keysArr.push(currentNode.key);
+                currentNode = currentNode.next;
+            }
+        }
+        return keysArr;
+    }
 
+    //O(this.size)
+    values() {
+        const valsArr = [];
+        for (let i = 0; i < this.numberOfBuckets; i++) {
+            let currentNode = this.buckets[i];
+            while (currentNode) {
+                valsArr.push(currentNode.value);
+                currentNode = currentNode.next;
+            }
+        }
+        return valsArr;
+    }
 }
+
+export default HashTable;
