@@ -1,18 +1,34 @@
-//sort Performance:
-//all sorts are at least n*log(n), because it requires that many operations to view all permutations of the object that is being sorted;
+//When to use each sort:
 
-//benefits of MergeSort
+//Quick sort: 
+//You don't need a stable sort and average runtime is most important
+//Uses up to O(n**2) time and around O(n*log(n)) of call stack memory
+//Preferred method of sorting arrays because its moves through adjacent elements (better locality of reference) than merge sort, which ends up scanning a variety of arrays when it's not in-place
 
-//stability: elements that compare = do not move, so never reassigned in memory
-//O(nlog(n)) run time
-//merge sort is better of linkedLIsts, but quicksort is better for arrays, because it works better with a local memory cache 
+//Merge sort:
+//You want a stable, O(n*log(n)) sort and Quicksort's worstcase runtime is scary
+//Always uses O(n) auxiliary space and has a larger constant than quicksort for N
+// It's the only stable O(n*log(n)) sort
+// It's the prefer sort of linked lists, where only O(log(n)) extra space is needed
 
-//fallings of MergeSort
+//Heap sort:
+//You don't need a stable sort and you care more about worst case perfromance
+//Guaranteed to be O(n*log(n)) and uses constant auxiliary space
 
-//does way too much work if array is already sorted
-//does way too much work if array is composed of identical elements
-//does more work than quicksort if array is sorted in reverse order
-//use MergeSort over QuickSort if you don't know anything about the data
+//Introsort:
+//Like heap sort, but with log(n) additional stack space
+
+//Insertion sort:
+//When N is guaranteed to be small
+//O(n*2), but a small constant and it's a stable sort
+
+//Bubble sort and selection sort:
+//Not really useful in a practical context
+//Slightly easier to implement than insertion sort
+
+//Radix sort
+//Where log(n) is larger than K, where K is the number of radix digits
+
 
 
 function mergeSort(array, comparatorCb) {
