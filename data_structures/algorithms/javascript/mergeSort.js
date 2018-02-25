@@ -1,3 +1,6 @@
+//sort Performance:
+//all sorts are at least n*log(n), because it requires that many operations to view all permutations of the object that is being sorted;
+
 //benefits of MergeSort
 
 //stability: elements that compare = do not move, so never reassigned in memory
