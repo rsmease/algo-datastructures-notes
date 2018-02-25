@@ -1,3 +1,17 @@
+//How to Pick a Traversal Pattern
+//Pre-order: you know you need to explore roots first
+//Pre-order traversal is used to create a copy of the tree;
+//Pre-order traveral is used to get a prefix expression on a trie
+
+//Post-order: you know you needto explore leaves right
+//Post-order traversal is used to delete the tree
+//Post order is used to get a suffix expression on a trie
+
+//In-order: you want to preserve the inherent order of the tree, or flatten it
+//Useful for searching a binary search tree
+
+
+
 class BinarySearchTreeNode {
     constructor(value) {
         this.value = value;
