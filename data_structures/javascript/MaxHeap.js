@@ -56,5 +56,12 @@ class MaxHeap {
 
     last() {
         let path, position, modifier, insertNode;
+
+        position = this.length;
+        path = [];
+
+        while (position > 1) {
+
+        }
     }
 }
