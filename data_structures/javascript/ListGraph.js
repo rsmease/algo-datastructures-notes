@@ -1,3 +1,12 @@
+//A tree is a special kind of graph; we would call it a directed acyclic graph
+//Graphs can also be cyclic (e.g. a path of connecting flights) or undirected (e.g. friendships in a social network)
+
+//If a path exists between all vertices of a graph, it is called conected
+//If there is a path from every vertex to every other vertex, it is strongly connected
+//We have two ways to search a graph: BFS and DFS
+//DFS is preferable when we think that our target is somewhere far from our starting point; BFS is more useful when we think that the target is only a few degrees of separate from the starting point 
+
+
 //This graph is unweighted;
 //This graph is undirected;
 class ListGraph {
