@@ -8,9 +8,10 @@
 //Post order is used to get a suffix expression on a trie
 
 //In-order: you want to preserve the inherent order of the tree, or flatten it
-//Useful for searching a binary search tree
 
-
+//Full binary tree: all nodes have either 0 or two children
+//Complete binary tree: tree is completely filled to leaf level, where all nodes are filled left to right (e.g. a minHeap/maxHeap)
+//Perfect binary tree: both full and complete
 
 class BinarySearchTreeNode {
     constructor(value) {
@@ -56,6 +57,7 @@ class BinarySearchTreeNode {
         }
     }
 
+    //O(number of nodes)
     DFSTraversal(traversalCb, order = 'in') {
         if (order = 'pre') {
             traversalCb(this.value);
@@ -74,6 +76,7 @@ class BinarySearchTreeNode {
         }
     }
 
+    //O(number of nodes)
     BFSTraversal(traversalCb) {
         let processingQueue = [this];
         while (processingQueue.length) {
@@ -88,10 +91,12 @@ class BinarySearchTreeNode {
         }
     }
 
+    //O(depth of tree)
     getMin() {
         return this.left ? this.left.getMin() : this.value;
     }
 
+    //O(depth of tree)
     getMax() {
         return this.right ? this.right.getMin() : this.value;
     }
@@ -102,6 +107,7 @@ class BinarySearchTree {
         this.root = null;
     }
 
+    //O(depth of tree)
     add(value) {
         const newNode = new BinarySearchTreeNode(value);
         if (!this.root) {
@@ -149,6 +155,7 @@ class BinarySearchTree {
         this.root = removeNode(this.root, value);
     }
 
+    //O(depth of tree)
     getHeight(node = this.root) {
         if (!node) {
             return 0;
@@ -159,6 +166,7 @@ class BinarySearchTree {
         }
     }
 
+    //O(2 * depth of tree)
     isBalanced(node = this.root) {
         if (!node) {
             return true;
