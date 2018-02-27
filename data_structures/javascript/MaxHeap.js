@@ -1,67 +1,77 @@
-class BinaryHeapNode {
-    constructor(value) {
-        this.parent = null;
-        this.rightChild = null;
-        this.leftChild = null;
-        this.value = value;
-    }
-}
-
 class MaxHeap {
     constructor() {
-        this.length = 0;
         this.root = null;
+        //where children are all stored at 
+        //parentIndex * 2 + 1 and parentIndex * 2 + 2
+        this.heap = [];
     }
 
-    count(node = this.root) {
-        if (!node) {
-            return 0;
-        }
-        let count = 1;
-        count += this.count(node.leftChild);
-        count += this.count(node.rightChild);
-        return count;
-    }
-
+    //O(log(n)) where n is number of nodes in tree
     insert(value) {
-        const newNode = new BinaryHeapNode(value);
-        this.length += 1;
-        if (!this.root) {
-            this.root = newNode;
-        } else {
-            //??
-            return undefined;
-        }
+        this.heap.push(value);
+        this.heap.siftUp(this.heap.length - 1);
     }
 
+    leftChild(parentIndex) {
+        return parentIndex * 2 + 1;
+    }
+
+    rightChild(parentIndex) {
+        return parentIndex * 2 + 2;
+    }
+
+    parentIndex(childIndex) {
+        return [Math.floor((childIndex - 1) / 2)];
+    }
+
+    swap(i, j) {
+        const temp = this.heap[i];
+        this.heap[i] = this.heap[j];
+        this.heap[j] = temp;
+    }
+
+    //O(1)
+    getMax() {
+        return this.heap[0];
+    }
+
+    //O(log(n)) where n is number of nodes in tree
     extractMax() {
-        if (!this.root) {
-            return null;
-        } else {
-            return this.remove(this.root);
-        }
+        const max = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.siftDown();
+        return max;
     }
 
-    resetRoot() {
-        if (!this.root) {
-            return null;
-        } else {
-            let newRoot = this.root;
-            while (newRoot.parent) {
-                newRoot = newRoot.parent;
+    siftUp(index) {
+        while (index > 0) {
+            let parentIndex = this.parentIndex(index);
+            if (this.heap[parentIndex] < this.heap[index]) {
+                this.swap(parentIndex, index);
             }
-            this.root = newRoot;
+            index = parent;
         }
     }
 
-    last() {
-        let path, position, modifier, insertNode;
-
-        position = this.length;
-        path = [];
-
-        while (position > 1) {
-
+    siftDown() {
+        let index = 0;
+        let indexToSwap = null;
+        while (true) {
+            let leftChild = this.leftChild(index);
+            if (this.heap[index] < this.heap[leftChild]) {
+                indexToSwap = leftChild;
+            }
+            let rightChild = this.rightChild(index);
+            if (this.heap[index] < this.heap[rightChild] && (this.heap[leftChild] === null ||
+                    this.heap[leftChild] !== null && this.heap[rightChild] > this.heap[leftChild])) {
+                indexToSwap = rightChild;
+            }
+            if (!indexToSwap) {
+                break;
+            } else {
+                this.swap(index, indexToSwap);
+                index = indexToSwap;
+            }
         }
     }
 }
