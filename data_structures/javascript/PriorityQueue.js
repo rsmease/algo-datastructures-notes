@@ -66,7 +66,7 @@ class PriorityQueue {
                 toSwap = leftChildNode;
             }
 
-            if (!this.heap[rightChildNode] && this.comparatorCb(rightChildNode, leftChildNode) && this.comparatorCb(rightChildNode, currentNode)) {
+            if (this.heap[leftChildNode] && !this.heap[rightChildNode] || this.comparatorCb(rightChildNode, leftChildNode) && this.comparatorCb(rightChildNode, currentNode)) {
                 toSwap = rightChildNode;
             }
 
