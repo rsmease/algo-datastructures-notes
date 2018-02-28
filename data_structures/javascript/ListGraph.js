@@ -288,7 +288,6 @@ shortestPath(start, finish) {
             }
         }
     }
-    console.log(pathLength)
     path.push(start);
     return path;
 }
