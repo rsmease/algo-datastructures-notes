@@ -7,7 +7,8 @@ class PriorityQueue {
     }
 
     //O(log(n))
-    insert(node) {
+    insert(node, priority = node.priority) {
+        node.priority = priority;
         this.heap.push(node);
         if (!this.heap.length) {
             this.siftUp();
@@ -28,6 +29,10 @@ class PriorityQueue {
 
     defaultComparatorCb(node1, node2) {
         return this.heap[node1].priority < this.heap[node2].priority;
+    }
+
+    isEmpty() {
+        return this.heap.length;
     }
 
     //O(1)
@@ -89,7 +94,7 @@ class PriorityQueue {
     //O(nlog(n))
     heapSort() {
         const sorted = [];
-        while (this.heap.length) {
+        while (!this.isEmpty()) {
             sorted.push(this.extract());
         }
         return sorted.reverse();

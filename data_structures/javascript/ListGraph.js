@@ -141,10 +141,12 @@ class DirectedAcyclicListGraph extends ListGraph {
             this.removeEdge(vertex1, vertex2);
             return false;
         }
+        delete this.vertices[vertex2];
         this.numberOfEdges++;
         return true;
     }
 
+    //O(this.numberOfEdges)
     detectCycle(vertex) {
         const scan = (vertex) => {
             if (!this.vertexEdges(vertex).length) {
@@ -165,4 +167,128 @@ class DirectedAcyclicListGraph extends ListGraph {
         const deletionIndex1 = this.edges[vertex1].indexOf(vertex2);
         this.edges[vertex2].splice(deletionIndex2, 1);
     }
+
+    //O(this.numberOfEdges)
+    topologicalSort() {
+        const vertices = Object.keys(this.vertices);
+        const processingStack = [];
+        const visited = {};
+        for (let i = 0; i < vertices.length; i++) {
+            let vertex = vertices[i];
+            visited[vertex] = true;
+            this.topologicalSortHelper(processingStack, visited, vertex);
+            processingStack.push(vertex);
+        }
+        return processingStack;
+    }
+
+    //O(currentVertexChildren)
+    topologicalSortHelper(vertex, visited, processingStack) {
+        let currentVertexChildren = this.vertexEdges(vertex);
+        for (let j = 0; j < currentVertexChildren.length; j++) {
+            if (!visited[currentVertexChildren[j]]) {
+                this.visited[currentVertexChildren[j]] = true;
+                this.topologicalSortHelper(currentVertexChildren[j], visited, processingStack);
+                processingStack.push(currentVertexChildren[j]);
+            }
+        }
+    }
+
+    shortestPath(start, finish) {
+        const INFINITY = 1 / 0;
+        const vertices = new PriorityQueue();
+        const distances = {};
+        const parents = {};
+        const path = [];
+        let pathLength = 0;
+
+        for (let vertex in this.vertices) {
+            if (vertex === start) {
+                distances[vertex] = 0;
+                vertices.insertByPriority(vertex, 0);
+            } else {
+                distances[vertex] = INFINITY;
+                vertices.insertByPriority(vertex, INFINITY);
+            }
+            parents[vertex] = null;
+        }
+
+        while (!vertices.isEmpty()) {
+            smallest = vertices.extract();
+
+            if (smallest === finish) {
+                pathLength = distances[smallest];
+                while (parents[smallest]) {
+                    path.push(smallest);
+                    smallest = parents[smallest];
+                }
+                break;
+            }
+
+            if (!smallest || distances[smallest] === INFINITY) {
+                continue;
+            }
+
+            for (let neighbor in this.edges[smallest]) {
+                let alternative = distances[smallest] + this.vertices[smallest][neighbor].distance;
+                if (alternative < distances[neighbor]) {
+                    distances[neighbor] = alternative;
+                    parents[neighbor] = smallest;
+                    vertices.insert(neightor, alternative);
+                }
+            }
+        }
+        path.push(start);
+        return path;
+    }
+}
+
+shortestPath(start, finish) {
+    const nodes = new PriorityQueue();
+    const distances = {};
+    const parents = {};
+    const path = [];
+    let pathLength = 0;
+    let smallest, vertex, neighbor, alt;
+
+    for (let vertex in this.vertices) {
+        if (vertex === start) {
+            distances[vertex] = 0;
+            nodes.enqueue(0, vertex);
+        } else {
+            distances[vertex] = INFINITY;
+            nodes.enqueue(INFINITY, vertex);
+        }
+        parents[vertex] = null;
+    }
+
+    while (!nodes.isEmpty()) {
+        smallest = nodes.dequeue();
+
+        if (smallest === finish) {
+            pathLength = distances[smallest];
+            while (parents[smallest]) {
+                path.push(smallest);
+                smallest = parents[smallest];
+            }
+            break;
+        }
+
+        if (!smallest || distances[smallest] === INFINITY) {
+            continue;
+        }
+
+        for (let neighbor in this.vertices[smallest]) {
+            alt = distances[smallest] + this.vertices[smallest][neighbor];
+            if (alt < distances[neighbor]) {
+                distances[neighbor] = alt;
+                parents[neighbor] = smallest;
+
+                nodes.enqueue(alt, neighbor);
+            }
+        }
+    }
+    console.log(pathLength)
+    path.push(start);
+    return path;
 }
