@@ -6,6 +6,15 @@
 - Use a content delivery network to reach a global audience
 - Use React so that you're only updating the virtual DOM!
 - All for lossy compression algorithms that do not make a difference for the user
+- Expensive styling (anything requiring a prepaint calculation) will be more costly for performance, although in general, the browsers are not ridiculously fast at this
+
+## Rendering your code in the browser:
+
+- Build trees to traverse: 'compile' HTML and CSS to build DOM tree and CSSOM tree
+- Tree Traversal: traversal all visible nodes, find appropriate CSSOM rules and apply them (build the render tree)
+- Layout: browser decides how much space each element needs to occupy
+- Paining: browser fills in all the pixels by rasterizing the code into a bitmap (not yet on the screen)
+- Compositing: browser draws elements on the scren in the correct order, so that it matches the expected bitmap
 
 ## Improving SEO
 
