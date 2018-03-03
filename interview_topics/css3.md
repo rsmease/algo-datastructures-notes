@@ -82,3 +82,47 @@
 - Box-sizing will allow you to include or disclude the border and padding from the dimensions of the box
 - Border-box adds both padding and border to the box's dimensions
 
+## Non-standard fonts
+
+- Load from a content provider or from a set of font files within your directory
+- Always provide a default font for graceful degradation
+- You will need multiple file types (woff, eot, tff) to support all browsers if you choose to load the fonts locally from your directory
+
+## CSS Selector Traversal
+
+- This happens right to left, not left to write
+- This allows for more efficient parsing of large rulesets because it allows for quick elimination of styles that do not apply to a particular component
+- If read left to write, the browser would traverse the tree more frequently before discovering that the final piece of the rule excluded the search from consideration in the first place
+
+## Pseudo-Elements
+
+- ::before and ::after — allow for generation of a clearfix, but also for border styline to create a sense of distinction from other elements
+- ::placeholder — style placeholder text
+- ::first-letter, ::spelling-error, ::grammatical-error: style these pieces of text
+- ::selected — style what the user has selected or highlighted
+
+## Pseudo-Classes
+
+- Native implementations of very common classes, generally with a direct relationship to user interaction
+- :active, :checked, :hover, :empty, :enabled, :first, :last, :visited
+
+## Display
+
+- Inline elements do not respect top/bottom margins and cannot have height or width
+- Inline-block elements do respect top/bottom margins and can have height or width
+- Both inline and inline block respect right/left margins
+- Inline-flex makes a flexbox (defaulted as a block) display as an inline-block
+
+## Position
+
+- Absolute: positioned with respect to the nearest relative parent
+    - Creates a new stacking context
+- Relative: positioned with respect to itself
+    - Loaded as static but may be positioned using top/bottom/left/right with relation to its own position
+- Static: loaded per the structure of the HTML and positioning of other elements
+    - Top/bottom/left/right and z-index have no effect
+- Fixed: positioned with respect to the viewport
+    - Creates a new stacking context
+    - When printed, it appears on every page
+
+
