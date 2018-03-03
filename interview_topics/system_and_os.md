@@ -44,3 +44,13 @@
     - This leads to a unique database query as we iterate over the results of the association query
 - Database indexes are useful for trapping specific, ordered memory addresses of a particular column in a table, allowing for faster lookup of the data stored in the corresponding row
     - This makes querying the table using that column much faster 
+
+## Pointers in C
+
+- Memory allocation is determined by the compiler and depends on input type: integers are given four bytes; characters are give one byte
+- Variables are written, in binary, at the memory address where the their variable is stored
+- Pointers are variables that store the address of other variables
+    - Due to dereferencing, *variable will give us the value stored at the the memory address that it points to
+    - Similarly, modifying the pointer assignment will also modify the value of the variable that it points to
+
+## Pass by Value vs. Pass By Reference

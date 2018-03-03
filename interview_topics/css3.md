@@ -48,3 +48,37 @@
 - Use graceful degredation: allow older browsers to calmly ignore new features without making UX terrible
 - Use vendor prefixes or polyfill where necessary 
 
+## Hiding Content
+
+- Visibility hidden: remains on the DOM
+- Display none: removed from the DOM
+- Position left -999rem: still accessible to screen readers
+
+## Media Queries
+
+- With mobile first, build the mobile layout view and then write media queries for larger screens
+- Media print and media speech are also available for printing and audio synthesizer contexts
+- Also includes selectors and, not and only for more prescriptive rulesets 
+
+## Writing Effective CSS
+
+- Avoid redundant styles
+- Avoid !important and #id
+- Use BEM naming conventions for clarity and approrpiate cascades of specificity
+- Allow inheritance where appropriate
+- Never use inline styling
+
+## CSS Preprocessors
+
+- Love that I can define and resuse variables
+- Mask over the use of vendor properties so that I can have more readable CSS
+- Easy to reuse and generalize styles that involve slight variations in a pattern
+- Reduce performance of the styling
+- Without e.g. Rails and hot reloading, developing is slower if you have to compile the styles 
+
+## Box Model
+
+- Content, padding, border and margin
+- Box-sizing will allow you to include or disclude the border and padding from the dimensions of the box
+- Border-box adds both padding and border to the box's dimensions
+
