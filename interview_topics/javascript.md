@@ -53,14 +53,25 @@
 - Small units of independent, reusable code
 - Namespaces that remain private when interacting with other modules
 - module.exports was the previous native implementation of JS modules
-- AMD and Require JS allowed for asynchronous module loading
+- AMD and Require JS allowed for asynchronous module loading, removing dependency issues
     - These are no longer useful with the rise of ES6
 - ES6 allows for a either synchronous or asynchronous module management
 
-### Immediately Invoke Function Expression (IIFE) (review)
+## Immediately Invoke Function Expression (IIFE) (review)
 
 - Called immediately when defined 
 - Surrounding parentheses are used to prevent the program from seeing it as a function declaration 
 - Enables you to attach private data to a function, and it avoids polluting the global namespace
 - Declaration version is compatible; the defintion is not
     - You can make a function definition work as an IIFE by wrapping it in parentheses
+
+## Anonymous Functions
+
+- Used when passed to other functions
+- Used when creating a closure within another function
+
+## Host Objects vs Native Objects
+
+- Host objects are objects provided by a library or generated within a program
+- Native objects are objects native to JavaScript (e.g. Object, Array, String);
+
