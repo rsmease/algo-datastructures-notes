@@ -34,3 +34,17 @@
 - Determines the stack order of two dimensional elements on the window
 - Default stack: background -> elements with negative stacking context -> block elements -> float elements -> inline elements -> positioned elements
     - Two elements with the same stack order? — The one written lower in the HTML will appear on top
+- Z-index only works in a position context of fixed, relative or absolute
+
+## Block-Formatting Context 
+
+- Block-formatting context: a container region that exists due to the presence of a block element, inline block element, positioned element, etc.
+    - Contains the objects within it, althought the context may collapse if all of those elements are floated
+    - Clearfix allows you to break out of the float space within the local block-formatting context
+
+## Supporting Old Browsers
+
+- Always check if the browsers supports the feature, rather than checking the browser type and assuming that the current version will have the expected feature support (this is called 'browser sniffing')
+- Use graceful degredation: allow older browsers to calmly ignore new features without making UX terrible
+- Use vendor prefixes or polyfill where necessary 
+
