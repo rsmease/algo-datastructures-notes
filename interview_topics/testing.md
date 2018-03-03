@@ -21,3 +21,9 @@
 - Test early and test often to catch bugs before they appear!
 - Use chrome developer tools to view behavior of the interface that is failing
 - _read_ your errors
+
+## Testing Pyramid
+
+- Unit tests: input/output tests of specific functions
+- Integration tests: input/output tests tracking interactions between smaller units or tracing a process through several units
+- Web Driver / UI tests: test the ability of a bot to navigate HTML and find expected elements
