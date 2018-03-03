@@ -75,3 +75,93 @@
 - Host objects are objects provided by a library or generated within a program
 - Native objects are objects native to JavaScript (e.g. Object, Array, String);
 
+## Ajax
+
+- Allow you to update the DOM by communicating with servers without updating the page unless necessary to repaint the new information onto the page
+- Reduce the amount of traffic that has to travel from client to server and back
+    - Response times are faster because of smaller traffic
+- Easy to use: communicate with the HTTP protocol using RESTful methods
+- AJAX data cannot be indexed by Google unless it is called automatically when the page loads
+- You can bypass the same origin restrictions by requesting JSONP instead of JSON
+    - Has been replaced with the CORS standards
+    
+## Event Capturing, Bubbling (review)
+
+- Bubbling principle is simple: for most events, once you find the specific target of the event, you call its event listener and then all event listeners in the chain of parent objects
+    - Not all events bubble; focus is a notable exception
+- event.target is the target that initiated the event bubble
+    - event.currentTarget is the object where a clickhandler is stored, not necessarily item that was clicked, but the first available parent 
+- two ways to prevent buddling:
+    - event.stopPropogation() // turn off all parent handlers
+    - event.stopImmediatePropogation() // turn of my handler and all parent handlers 
+- Don't stop bubbling unless you have a specific reason for doing so
+- Three phases of event management:
+    - Capturing phase: starting from the body and moving to the event.target
+    - Target phase: running listeners on event.target
+    - Bubbling phase: running listeners on all ancestors of event.target
+- The capture phase is normally invisible to us; it's rarely used for programming
+    - To use the capturing phase, just add a second param 'true' to your element.addEvenListener() methods
+- In the full process, code on event.target would be run twice (once during capturing, once during bubbling) if we just run code on every loop
+- There's an event.eventPhase property that tells you the number of the phase when the element was caught, but this is rarely used
+    - 0, not processed, 1, capturing, 2, target phase, 3, bubbling phase
+
+## 'load' vs. 'DOMContentLoaded'
+
+- load: images and iframe (as well as teh DOM) are ready
+    - Might involved additional application logic that builds at runtime
+- DOMContentLoaded: just the DOM is ready
+
+## Strict Mode (review)
+
+- Benefits of strict mode: 
+    - Makes debugging easier, by reducing the number of silent errors
+    - prevents accidental global variables by throwing errors
+    - prevents invalid use of delete by throwing errors
+    - prevents duplicate property names, parameter values 
+    - make eval() safer by make sure that variables created within eval are not hoisted beyond the scope of eval()
+    - referencing a 'this' value of null does not coerce to the global object 
+ 
+## Promises
+
+- Allow for chaining of callbacks to handle the result (success or error) or asynchronous functions
+- Generally preferred over nested callbacks, although simple callbacks might be preferred to promises because they carry less overhead (Promises have to actively listen for their status)
+- Promises will have to be polyfilled when working with older JS engines
+
+## Languages that Transpile to JS
+
+- Advantages:
+    - More features than are available with slow-to-develop JS, which needs to be supported widely by browsers
+    - Types (TypeScript), which allow for more poignant control of JavaScript
+    - Classes and inheritance features to make JS better resemble Ruby
+- Disadvantages:
+    - Possibly harder to find other developers who know the language
+    - Will probably need webpack or gult to automate all transpiling and bundling
+
+## Immutability in JS
+
+- Mutability is the default consensus of JS; most things are mutable
+- ImmutableJS library hurts performane a little, but makes it easier to trace bugs related to mutation
+- Immutable patterns are comment when working with functional programming paradigms (e.g. Redux)
+
+## Static Class Properties
+
+- Allow you to make calls directly on the class 
+- Makes sense for methods that apply to a general type rather than an instance 
+- Most useful for factory methods that need access to the classes unmutated values
+- Associated with the class that produces the instance, not the istance's prototype
+
+## Spread vs. Rest
+
+- Spread lets you destructure an array that's passed as a parameter
+- Rest lets you collect comma separated values into an array
+
+## What's so great about currying?
+
+- Allows for more expressive code (think Promises)
+- Allows for real-time handling of asynchronous execution patterns (again, Promises)
+
+## Template Literals
+
+- Advantages
+    - Allow you to escape HTML unsafe code with html''
+    - Allow you to call functions or write simple expressions within the ${}

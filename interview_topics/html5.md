@@ -16,8 +16,8 @@
 - Properties are keys on the DOM node that produces the HTML element
 - Attributes are native HTML elements
 - Typically, when you want to manipulate things with JavaScript, use properties instead of attributes
-    - Attributes often have a corresponding properties
-    - Non-native attributes can't be overriden with JavaScript
+    - Attributes have a corresponding property in the DOM node that loads the HTML
+    - Native attribute defaults can't be overriden with JavaScript
 
 ## Key new elements of HTML5
 

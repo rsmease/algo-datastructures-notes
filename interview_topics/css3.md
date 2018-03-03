@@ -47,6 +47,9 @@
 - Always check if the browsers supports the feature, rather than checking the browser type and assuming that the current version will have the expected feature support (this is called 'browser sniffing')
 - Use graceful degredation: allow older browsers to calmly ignore new features without making UX terrible
 - Use vendor prefixes or polyfill where necessary 
+- Feature detection: explicitly testing featuers of browser (good!)
+    - Feature inference (same as browser sniffing) (bad!)
+    - User Agent string detection (not as good a feature detection)
 
 ## Hiding Content
 
