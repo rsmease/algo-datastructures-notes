@@ -46,4 +46,38 @@
 
 ## Overview of Rails Architecture
 
-- 
+- ActiveRecord: object relational mapping to the database
+- ActiveResource: maps ActiveRecord object models to RESTful routes under API namespace (api.model_name.com)
+- ActionPack: controller and view layers 
+    - Handles and responds to web requests, providing routs, controllers to act at particular routes and views to be displayed after controllers complete their actions
+    -ActionPack::ActionDispatch parses information about a web reqquest and decodes HTTP requests
+    -ActionPack::ActionController provides base controlle rclass and approrpiate methods for dispatched requests
+- ActiveSupport: provies a bunch of syntactic sugar, e.g #deep_up, #try, #in?, #delegate, #html_safe?, #remove, #truncate, #starts_with?, #ends_with?, #pluralize, #singularize, #camelize
+- ActionMailer: emailer
+
+## CSRF and Rails, XSS and Rails
+
+- Cross-Site Request Forgery
+- Send a request from another site that is impersonating a current session on our site
+- Prevented by providing requests from our site with a special token that requests from other sites won't have
+- XSS is the injection of malicious scripts into inputs on the site
+    - Prevented by scrubbing all inputs or restricting allowed inputs to prevent malicious scripts (ActiveSupports #html_safe or strict params.allow() method
+
+## Mass Assignment Vulnerability
+
+- A too permissive ORM allows for injection of SQL that gives users too much power
+- Combatted by marking specific fields as immutable
+- Combatted by restricting the inputs allowed by params, similar to the prevention method for XSS discussed above
+
+## Server Options
+
+- Apache and Nginx allow for standard static web services
+- Puma is the new default server and allows for multithreading, which is useful for web apps
+- Unicorn is a mature web app server that has been adapted for Python, toos
+    - Very good at spawning worker processes to serve requests
+    - Monitors the workers to prevent memory and process issues
+- WEBrick is slower and less robust; it's the old default
+- Phusion Passenger is multithreaded and integrates directly into Apache,Nginix
+
+
+
