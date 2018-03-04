@@ -165,3 +165,8 @@
 - Advantages
     - Allow you to escape HTML unsafe code with html''
     - Allow you to call functions or write simple expressions within the ${}
+
+## Higher-Order Functions
+
+- Accept a function as a parameter
+- Return a function to be evoked later
