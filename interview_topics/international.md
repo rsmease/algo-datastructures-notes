@@ -52,3 +52,11 @@
 - If you localize for multiple versions of the same language across different regions, the Bundle Search pattern will prioritize checking the region before the language
 - Add .stringsdict files for languages that have different pluralization rules
 - XCode has tools to help you locate unlocalized strings
+
+
+## Auto Layout
+
+- You will always have constraints when building a layout
+- UIStackView allows you to arrange your views linearly
+    - Manages your constraints, allows for different alignments
+    - Properties similar to the CSS flex property
