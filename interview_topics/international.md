@@ -65,3 +65,11 @@
 - Leading and trailing are important to RTL internationalization
     - Left/right will not flip the view correctly
     -Will flip the items but will not right-align the text within the items
+- Layouts are built using a layout engine which has a set of rules that it follows
+    - This amounts to a reusable API that can be pushed to different iOS window sizes or different MacOS window sizes
+- Layout Cycle:
+    - Application Run Loop -> Constraints Change -> Deferred Layout Pass
+    - Layout is recomputed when constraints change
+        - Constraints are updated
+        - Reassign view frames
+
