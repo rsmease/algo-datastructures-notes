@@ -26,6 +26,8 @@
     - You can also collect method names until receiving a particular ending condition and then execute all of the methods at once!
 - Send method calls the method on the receiving object with the given inputs
     - It's useful in the method-missing pattern
+- Send also allows you to execute private methods within a class
+- Another fun metaprogramming is 'define_method'
 
 ## Ruby Interpreters
 
@@ -88,5 +90,75 @@
     - You're especially find if you're using JRuby, which gives you the memory management tools of the JVM
 - Rails is admittedly not the best choice for massive projects that requires a lot of precision
     - Ruby would also be a bad choice for e.g. games, where performance is critical to the millisecond
+
+## Rack
+
+- Rack is a Ruby-based CGI (Common Gateway Interfact), which offers a standard tht allows web servers to execute programs, generating web pages dynamically
+    - Adapts Rails/other frameworks to Ruby runtime environments
+- Rack is a collection of middleware for Ruby web applications
+    - It allows you to interact with Sinatra and Mongrel or Rails and Unicorn or Rails and Mongrel or Sinatra and Puma, all without dealing with the specifics of the interactions between them
+- The great part of Rack? We're allowed to add, remove and customize the middleware as needed
+
+## Caching
+
+- Page caching: add a gem to allow you to cache an entire HTML page in a public directory
+    - No need to rerender the view again on subsequent requests
+    - Awful for dynamic sites, but wonderful for mostly static sites
+    - Use cache_pages: controller_method in the controller
+- Action Caching: again, add a gem, this time to allow you to cache a particular set of HTML
+    - This allows you to cache pages that require business logic before they can be run
+    - E.g. allows you to cache authenticated views
+- Fragment caching: cache fragments of websites for dynamic applications
+    - These caches automatically expire when the component is updated
+    - Russian doll caching is a form of caching that allows you to expire only nested elements when a particular change takes place, much like React will only selectively update components
+
+## Super vs Super
+
+- Super: find the method with this name in the next available parent, including passing the arguments given to the current method
+- Super(): repeat the super process but explicitly pass no arguments
+
+## Ruby Comparators
+
+- ==: do the have the same value (type coercion here)
+- ===: used within when classes of case statements
+- eql?: checks value and type, cf. strict equality operator in JS
+- equal?: checks that two variables point to the same address in memory
+
+## Extend vs. Include
+
+- include: adds/overwrites the module methods as instance methods (remember include, instance)
+- extend: adds/overwrites the module methods as class methods
+
+## Class Inheritance in Ruby
+
+- instance variables: available to all members of an an instance if initialized
+- class variables: automatically super'ed to the highest available parent with the variable
+    - affects all inherited members instance of that variable because they all have the same pointer
+- everything in Ruby is an object that inherits from Object (which inherits from Kernel < BasicObject) by default
+- instances variables are private to each individual, even if they seem to pull methods from parents via super
+    - to create a single pointer shared by all members of a class but by none of its parents or children, create an instance variable and control assignment to that variable via self.class.variable_name
+    - this pattern is different than normal instance variables, which are not shared between sibling instances unless they are generated as defaults within the initialize method
+- You are limited to _one_ parent from which to inherit in Ruby
+    - Multiple inheritance may be modelled with module mixins
+    - Ruby will check mixins before checking the parent class
+    - Ruby will check mixins in LIFO order
+
+## Private vs Protected Methods in Ruby
+
+- Private methods can only be called implicitly by other methods of an instance
+    - They cannot be called from outside of the class definition, where the instance is the receiver
+- Private methods can also be called implicitly from any child classes, as long they are caled privately within the child class definition
+    - They use an implicit receier self, athougth a fun trick would be to use a receiver of a sibling class that also inherits from the parent class: Sibling.new.method_name will operate just like method_name or self.method_name
+    This trick cannot be used by non-sibling classes
+
+## Classes, Objects and Modules
+
+- Class: blueprint for creating an object with methods, variables, etc.
+    -eigenclass: instance of the class constructor that represents the class in memory
+    -eigenclass is the self receiver in class methods
+- Object: instantiation of class blueprint, perhaps with local variable reassignment or mutation
+- Module: namespaces, allow for multiple inheritance, cannot be instantiated
+- Self: always refers to the current object, not pollution prone like this in JS
+
 
 
