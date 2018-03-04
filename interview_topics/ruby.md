@@ -68,6 +68,7 @@
 - A too permissive ORM allows for injection of SQL that gives users too much power
 - Combatted by marking specific fields as immutable
 - Combatted by restricting the inputs allowed by params, similar to the prevention method for XSS discussed above
+-attr_protected will also prevent mass assignment on certain columns
 
 ## Server Options
 
@@ -79,5 +80,13 @@
 - WEBrick is slower and less robust; it's the old default
 - Phusion Passenger is multithreaded and integrates directly into Apache,Nginix
 
+## Issues with Rails
+
+- Ruby is up to 50 times slower than C
+- Rails used to have issues with memory leaks because of aggressive garbage collection by Ruby
+    - This is no longer as much of an issue
+    - You're especially find if you're using JRuby, which gives you the memory management tools of the JVM
+- Rails is admittedly not the best choice for massive projects that requires a lot of precision
+    - Ruby would also be a bad choice for e.g. games, where performance is critical to the millisecond
 
 
