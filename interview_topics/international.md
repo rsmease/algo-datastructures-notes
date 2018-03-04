@@ -60,3 +60,8 @@
 - UIStackView allows you to arrange your views linearly
     - Manages your constraints, allows for different alignments
     - Properties similar to the CSS flex property
+- Constraints the AutoLayout property that allows you to build managed layout grids
+    - Adding priority lists can make layout builds more manageable
+- Leading and trailing are important to RTL internationalization
+    - Left/right will not flip the view correctly
+    -Will flip the items but will not right-align the text within the items
