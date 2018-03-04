@@ -1,0 +1,81 @@
+## Unix Intro
+
+- operating system that sits under MacOS
+    - kernel: allocates time and memory to programs and handles filestore and communications that respond to system requests
+    - shell: privte interface between the user and kernel, accepting prompts from the user within the command line terminal
+    - programs: programs are commands or larger sets of commands that the user requests the system to run via the shell
+- everything in UNIX is either a file or a process (process is an executing program with a PID)
+- file is a non-executing collection of data, created by processes running on the system
+
+## Commands
+
+- ls vs. ls -a: (-a will reveal all hidden files .important_system_file)
+    - is an example of a command option
+    - -l will give more detaied information
+- cd: is change directory (. is the curr directory; .. is the parent)
+- pwd: is print working directory, starting at the root of the current shell
+- cp: will copy a file from directory a to directory b
+- move: will either rename a file or move it from directory a to directory b
+- rm: will remove a file
+- rmdir: will remove a directory if it is empty
+- clear: will clear the screen
+- cat: display contents of a file
+- less: display just the first page and allow page-by-page view
+    - within less: query/ will run a search for that word
+    - within less: n will move to the next query result
+- head: display the first 10 lines
+    - head -7 display the first 7 lines
+    - head -20 display the first 20 lines
+- tail: display the last 10 lines
+    - tail - 20 display the last twenty lines
+- grep: global regex print
+    - with -i option, it becomes case insensitive
+    - e.g. grep query filename.txt
+    - will return all the lines with a match to the query
+    - multiword or regex patterns must be enclosed in quotes
+    - -v option will choose non-matching lines
+    - -n option will include line numbers
+    - -c will just print the count of the matching lines
+- wc -w: check the number of words
+    - wc -l: check the number of lines
+- >: redirect output to given file, rather than to the terminal window
+    -this will overwrite the existing file contents!
+- >>: append to an existing file
+- cat file file > file: will concatenate the two files into the new file
+    - if one file is not present, the other one will still be submitted to the new file
+- <: redirect input to come from another file
+    - sort < filename will print the sorted lines from the file
+    - sort < filename > otherfile will add the sorted list to the otherfile
+    - sor < filename> filename will delete everything in filename!
+- |: chain commands together
+- *: will match everything that matches before and after:
+    - ls *.txt will grab all .txt files
+    - ls turtle* will grab all files starting with turtle
+- ?: will match only one character
+    - ls list? will grab nothing
+    -ls ?ist.txt will grab list.txt or gist.txt
+- apropos: find commands based on text search
+- whatis: find short header description of command
+- man: find full manual for command
+- chmod: will allow you to change the rw permissions of a file
+- ps: view processes that are running
+- &: at the end of a process command to run it in the background
+- ^Z: suspend a running process
+- bg: push a suspended process into the background and restart it
+- fg: restart a suspected process in the foreground (blocking)
+- kill: kill a job by job#
+    - kill -9 will forcibly kill a job that does not want to end
+- jobs: list all background, running and suspended jobs
+- df: free space reamining in the file system
+- du: number of _kilobytes_ used for a particular file
+- gzip: compress a file
+    - gunzip: uncompress a file
+- zcat: read compressed files without needing to unzip them
+- file: file name and file type
+    - file * will give you a report on everything in the current directory
+- !!: reference to earlier command
+- find: find a file within a directory
+    - find directory options
+    - e.g. find . -name 'list.txt' — find all files named list.txt in the current directory
+- !command_name: recall last command that started with 'command_name'
+- history: history of recent terminal commands
