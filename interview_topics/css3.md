@@ -27,7 +27,13 @@
 - Floats will allow for wrapping text around an element
 - Floats were also a popular way to build styling architectures before flexbox and css-grid
 - The clearfix allows you to move an element below one or more floated elements when its default behavior would have the element sit beside the two floats
-- Float's parent elements will collapse, regardless of the height of the float
+- Float's parent elements will collapse, regardless of the height of the float 
+
+## Block-Formatting Context 
+
+- Block-formatting context: a container region that exists due to the presence of a block element, inline block element, positioned element, etc.
+    - Contains the objects within it, although the context may collapse if all of those elements are floated
+    - Clearfix allows you to break out of the float space within the local block-formatting context
 
 ## Z-index
 
@@ -35,12 +41,6 @@
 - Default stack: background -> elements with negative stacking context -> block elements -> float elements -> inline elements -> positioned elements
     - Two elements with the same stack order? — The one written lower in the HTML will appear on top
 - Z-index only works in a position context of fixed, relative or absolute
-
-## Block-Formatting Context 
-
-- Block-formatting context: a container region that exists due to the presence of a block element, inline block element, positioned element, etc.
-    - Contains the objects within it, althought the context may collapse if all of those elements are floated
-    - Clearfix allows you to break out of the float space within the local block-formatting context
 
 ## Supporting Old Browsers
 
