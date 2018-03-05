@@ -84,7 +84,9 @@
 - Locale choice impact: 
     - Formatter behavior, calendar behavior
     - You can override a default calendar or a default currency
+    - Quotation start and end patterns (<< >> vs '')
 - Don't use locale to guess the user's location
 - Don't use locale to guess the user's preferred language
 - You can't make assumptions about the regulatory requirements for a user based on their preferred locale
+-NSBundle.localizedresource is the best pathway to managing localized context behavior
 
