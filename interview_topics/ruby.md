@@ -44,15 +44,15 @@
     - Allows you to build a complete fullstack web application using only Ruby
     - Enables you to interact with famous JS libraries like JQuery
 - RubyMotion is an implementation that allows Ruby to access Cocoa APIs through Ruby
-    - It's written with Objective C and is tailed to the Cocoa framework
+    - It's written with Objective C and is tailored to the Cocoa framework
 
 ## Overview of Rails Architecture
 
 - ActiveRecord: object relational mapping to the database
 - ActiveResource: maps ActiveRecord object models to RESTful routes under API namespace (api.model_name.com)
 - ActionPack: controller and view layers 
-    - Handles and responds to web requests, providing routs, controllers to act at particular routes and views to be displayed after controllers complete their actions
-    -ActionPack::ActionDispatch parses information about a web reqquest and decodes HTTP requests
+    - Handles and responds to web requests, providing routes, controllers to act at particular routes and views to be displayed after controllers complete their actions
+    -ActionPack::ActionDispatch parses information about a web request and decodes HTTP requests
     -ActionPack::ActionController provides base controlle rclass and approrpiate methods for dispatched requests
 - ActiveSupport: provies a bunch of syntactic sugar, e.g #deep_up, #try, #in?, #delegate, #html_safe?, #remove, #truncate, #starts_with?, #ends_with?, #pluralize, #singularize, #camelize
 - ActionMailer: emailer
@@ -60,10 +60,11 @@
 ## CSRF and Rails, XSS and Rails
 
 - Cross-Site Request Forgery
-- Send a request from another site that is impersonating a current session on our site
-- Prevented by providing requests from our site with a special token that requests from other sites won't have
+    - Send a request from another site that is impersonating a current session on our site
+    - Prevented by providing requests from our site with a special token that requests from other sites won't have
 - XSS is the injection of malicious scripts into inputs on the site
-    - Prevented by scrubbing all inputs or restricting allowed inputs to prevent malicious scripts (ActiveSupports #html_safe or strict params.allow() method
+    - Prevented by scrubbing all inputs or restricting allowed inputs to prevent malicious scripts
+    - ActiveSupport's #html_safe or strict params.allow() method
 
 ## Mass Assignment Vulnerability
 
@@ -76,7 +77,7 @@
 
 - Apache and Nginx allow for standard static web services
 - Puma is the new default server and allows for multithreading, which is useful for web apps
-- Unicorn is a mature web app server that has been adapted for Python, toos
+- Unicorn is a mature web app server that has been adapted for Python, too
     - Very good at spawning worker processes to serve requests
     - Monitors the workers to prevent memory and process issues
 - WEBrick is slower and less robust; it's the old default
@@ -93,7 +94,7 @@
 
 ## Rack
 
-- Rack is a Ruby-based CGI (Common Gateway Interfact), which offers a standard tht allows web servers to execute programs, generating web pages dynamically
+- Rack is a Ruby-based CGI (Common Gateway Interfact), which offers a standard that allows web servers to execute programs, generating web pages dynamically
     - Adapts Rails/other frameworks to Ruby runtime environments
 - Rack is a collection of middleware for Ruby web applications
     - It allows you to interact with Sinatra and Mongrel or Rails and Unicorn or Rails and Mongrel or Sinatra and Puma, all without dealing with the specifics of the interactions between them
@@ -147,9 +148,9 @@
 
 - Private methods can only be called implicitly by other methods of an instance
     - They cannot be called from outside of the class definition, where the instance is the receiver
-- Private methods can also be called implicitly from any child classes, as long they are caled privately within the child class definition
-    - They use an implicit receier self, athougth a fun trick would be to use a receiver of a sibling class that also inherits from the parent class: Sibling.new.method_name will operate just like method_name or self.method_name
-    This trick cannot be used by non-sibling classes
+- Protected methods can also be called implicitly from any child classes, as long they are called privately within the child class definition
+    - They use an implicit receiver self, athougth a fun trick would be to use a receiver of a sibling class that also inherits from the parent class: Sibling.new.method_name will operate just like method_name or self.method_name
+    - This trick cannot be used by non-sibling classes
 
 ## Classes, Objects and Modules
 

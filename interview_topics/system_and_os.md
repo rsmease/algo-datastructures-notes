@@ -13,7 +13,7 @@
 - Programs are executed in short term memory (RAM), but can be saved in a hard drive for permanent memory
 - Dynamic RAM: each memory cell is composed of a transistor and a capacitor that store electrical charges
     - Dynamic because it's constantly recharged to retain active memory
-- Static RAM: six interlocted transistors that don't need to be refreshed
+- Static RAM: six interlocked transistors that don't need to be refreshed
 - RAM can only hold information for as long as it's given electricity to retain it
 - With hard drive memory, latency is greater because you have to use a spinning disk to obtain stored information
     - Solid-state drives are faster and work by trapping electrical charges within floating gates

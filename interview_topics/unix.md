@@ -48,7 +48,7 @@
 - <: redirect input to come from another file
     - sort < filename will print the sorted lines from the file
     - sort < filename > otherfile will add the sorted list to the otherfile
-    - sor < filename> filename will delete everything in filename!
+    - sort < filename> filename will delete everything in filename!
 - |: chain commands together
 - *: will match everything that matches before and after:
     - ls *.txt will grab all .txt files
