@@ -73,3 +73,18 @@
         - Constraints are updated
         - Reassign view frames
 
+## Advance Topics in Localization
+
+- Things to localize:
+    - Duration over multiple days
+    - Energy, length and mass
+- Language choice impact:
+    - The preferred language sent by HTTP requests
+    - Apps and websites should use the preferred system language
+- Locale choice impact: 
+    - Formatter behavior, calendar behavior
+    - You can override a default calendar or a default currency
+- Don't use locale to guess the user's location
+- Don't use locale to guess the user's preferred language
+- You can't make assumptions about the regulatory requirements for a user based on their preferred locale
+

@@ -53,4 +53,22 @@
     - Due to dereferencing, *variable will give us the value stored at the the memory address that it points to
     - Similarly, modifying the pointer assignment will also modify the value of the variable that it points to
 
-## Pass by Value vs. Pass By Reference
+## Boolean Logic and Logic Gates
+
+- On state: electricity is flowing; off state, electricity is not flowing
+    - The problem with ternary or quinary states is that it's hard to measure the distinction between the signals
+    - Boolean algebra was also already popular and an OS could be build using Boolean patterns
+- Not: flips true/false
+    - Not gates have electricity unless the input is true
+- And: requires two true inputs for electricity to run
+- Or: requires only one of two true inputs for electricity to run
+- Xor: if both inputs are true, the output is false
+    - Only one of the two conditions can be true
+
+## Operating Systems
+
+- Allow computers to manage their own programs
+- Computers can be given processes to run in a batch (queue)
+    - OS kernels schedule the use of memory and time available on the computer and smartly multitask a variety of programs, all cached when they are not being processed
+- Virtual memory allocation allows programs to run over scattered pieces of memory without realizing it
+    - Also allows computers to distribute memory in an effective and somewhat random way, which is more secure
