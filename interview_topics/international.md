@@ -73,7 +73,7 @@
         - Constraints are updated
         - Reassign view frames
 
-## Advance Topics in Localization
+## Advanced Topics in Localization
 
 - Things to localize:
     - Duration over multiple days
