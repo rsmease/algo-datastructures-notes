@@ -3,6 +3,8 @@
 - operating system that sits under MacOS
     - kernel: allocates time and memory to programs and handles filestore and communications that respond to system requests
     - shell: privte interface between the user and kernel, accepting prompts from the user within the command line terminal
+        - shell is an interpreter
+        - bash is the name of the default MacOS shell
     - programs: programs are commands or larger sets of commands that the user requests the system to run via the shell
 - everything in UNIX is either a file or a process (process is an executing program with a PID)
 - file is a non-executing collection of data, created by processes running on the system
