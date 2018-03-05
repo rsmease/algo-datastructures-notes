@@ -1,7 +1,7 @@
 ## Serving Assets
 
 - A CDN is great because it enables two features: (1) local caching of resources for faster retrieval and (2) paralell retrieval of resource from multiple servers
-- Static content can be loaded with the header overhead associated with requests for dynamic assets, leading to faster retrieval of static assets
+- Static content can be loaded without the header overhead associated with requests for dynamic assets, leading to faster retrieval of static assets
 - Minify assets and combine assets (sprite images) where possible to reduce the number of requests
 
 ## Long-Polling
@@ -17,12 +17,12 @@
 - Pull protocols: client periodically connects to the server and checks all recent events
     - This can be done in a controlled manager that simulates server push
     - 'Push' notifications are actually pull notifications that are checked reasonably frequently
-- Apple improves the battery life of its customers by providing just one push connection to all of the updates that pass through its servers to the apps where you have push notificatiosn enabled
+- Apple improves the battery life of its customers by providing just one push connection to all of the updates that pass through its servers to the apps where you have push notifications enabled
 
 ## Server-sent Events
 
 - Similar pattern to long-polling, except that the connection subscribes the client indefinitely to the server, receiving updates whenever they arise
-- One-way equivalent of webSocks, which are a two-way stream of data
+- One-way equivalent of WebSocks, which are a two-way stream of data
 - SSEs have features that WebSockets lack, e.g. automatic reconection, event IDs and arbitrary events
 - Near real-time communication; sent every 3 seconds
 
@@ -31,7 +31,7 @@
 - Must activate specific port for communcation, which is constant and two-way as long as the port is subscribed to the socket server
 - Requires EventMachine server and an open port
 - True real-time communication, native browser support
-- Server holds the only process servering requests, client only does work when sending a message
+- Server holds the only process serving requests, client only does work when sending a message
 
 ## HTTP Header Params
 
