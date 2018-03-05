@@ -99,7 +99,7 @@
 
 ## Pseudo-Elements
 
-- ::before and ::after — allow for generation of a clearfix, but also for border styline to create a sense of distinction from other elements
+- ::before and ::after — allow for generation of a clearfix, but also for border styling to create a sense of distinction from other elements
 - ::placeholder — style placeholder text
 - ::first-letter, ::spelling-error, ::grammatical-error: style these pieces of text
 - ::selected — style what the user has selected or highlighted
