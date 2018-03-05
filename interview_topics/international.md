@@ -4,7 +4,7 @@
 - Internationalization: extension of apps architecture to allow for localization of content
     - Isolate all strings for translation and replace with a data structure that allows for option switching
     - Use standard APIs to handle the different writing systems and locale formats
-    - Mirror interfact to support right-to-left languages as needed
+    - Mirror interface to support right-to-left languages as needed
 - Xcode supports testing of localized version of the application
     - UI can be reviewed in the interface builder
     - Run the app with language options to suss out any unlocalized text
@@ -53,7 +53,6 @@
 - Add .stringsdict files for languages that have different pluralization rules
 - XCode has tools to help you locate unlocalized strings
 
-
 ## Auto Layout
 
 - You will always have constraints when building a layout
@@ -64,7 +63,7 @@
     - Adding priority lists can make layout builds more manageable
 - Leading and trailing are important to RTL internationalization
     - Left/right will not flip the view correctly
-    -Will flip the items but will not right-align the text within the items
+    - Will flip the items but will not right-align the text within the items
 - Layouts are built using a layout engine which has a set of rules that it follows
     - This amounts to a reusable API that can be pushed to different iOS window sizes or different MacOS window sizes
 - Layout Cycle:

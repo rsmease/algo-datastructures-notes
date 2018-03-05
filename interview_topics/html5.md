@@ -17,7 +17,7 @@
 - Attributes are native HTML elements
 - Typically, when you want to manipulate things with JavaScript, use properties instead of attributes
     - Attributes have a corresponding property in the DOM node that loads the HTML
-    - Native attribute defaults can't be overriden with JavaScript
+    - Native attribute defaults can't be overriden on page load with JavaScript
 
 ## Key new elements of HTML5
 
@@ -31,7 +31,7 @@
 
 - Cookies: only strings, sent with every request, small (4KB)
 - localStorage: stored indefinitely, a lot more space (5MB), only available on same origin
-- sessionStorage: stored only during the current session, a lot mroe space (5MB), only available on same origin
+- sessionStorage: stored only during the current session, a lot more space (5MB), only available on same origin
 
 ## Script Loading
 

@@ -36,11 +36,11 @@
 - Each object has a prototype object, from which it inherits in all of its prototype's properties 
 - '__proto__' is a non-standard mechanism for retrieving the prototuype of an object
 - All normal objects also inherit a .constructor property that points to a constructor function for the object
-- The '__proto__' property links that object to the .prototype property of he constructor function when the constructor function is invoked 
+- The '__proto__' property links that object to the .prototype property of the constructor function when the constructor function is invoked 
 - When referencing a property of an object, the JS engine will first check the object, when the object's prototype, etc.
     - This could go all the way up to the Object, which has a .prototype of null, so the call will then return undefined
 - Object.create(obj) creates a new object with the .prototype of obj
-- An inherited property is a copy by refrence of the property stored somewhere in the prototypal chain 
+- An inherited property is a copy by reference of the property stored somewhere in the prototypal chain 
 - Mutations to the inherited property are passed down the chain, but if the inherited property is replaced, that change will not be passed down the chain
 - In classical inheritance, objects inherit from special classes, whereas in prototypal inheritance, they just inherit directly from other objects 
 - There are three types of prototypal inheritance: 
@@ -107,8 +107,8 @@
 
 ## 'load' vs. 'DOMContentLoaded'
 
-- load: images and iframe (as well as teh DOM) are ready
-    - Might involved additional application logic that builds at runtime
+- load: images and iframe (as well as the DOM) are ready
+    - Might involve additional application logic that builds at runtime
 - DOMContentLoaded: just the DOM is ready
 
 ## Strict Mode (review)
@@ -148,7 +148,8 @@
 - Allow you to make calls directly on the class 
 - Makes sense for methods that apply to a general type rather than an instance 
 - Most useful for factory methods that need access to the classes unmutated values
-- Associated with the class that produces the instance, not the istance's prototype
+- Associated with the class that produces the instance, not the instance's prototype
+- C.f. Ruby class methods, which are attached to the eigenclass
 
 ## Spread vs. Rest
 
