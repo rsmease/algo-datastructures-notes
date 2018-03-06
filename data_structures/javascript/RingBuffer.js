@@ -58,7 +58,7 @@ class RingBuffer {
         const firstHalf = this.elements.slice(this.first, absPosition);
         const secondHalf = this.elements.slice(0, position - firstHalf.length);
 
-        return absPosition < this.capacity() ? firstHalf : secondHalf;
+        return absPosition < this.capacity() ? firstHalf : firstHalf + secondHalf;
     }
 
     //O(1)

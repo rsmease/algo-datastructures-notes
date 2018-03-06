@@ -82,7 +82,7 @@ class HashTable {
     get(key) {
         const keyString = this.checkKey(key);
         const targetBucket = this.hash(keyString);
-        let currentNode = this.buckets(targetBucket);
+        let currentNode = this.buckets[targetBucket];
 
         if (!currentNode) {
             return null;
