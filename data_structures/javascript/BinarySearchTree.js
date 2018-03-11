@@ -145,10 +145,10 @@ class BinarySearchTree {
                 return node;
             } else if (value < node.value) {
                 node.left = removeNode(node.left, value);
-                return node;
+                return node.left;
             } else {
                 node.right = removeNode(node.right, value);
-                return node;
+                return node.right;
             }
         };
 

@@ -1,7 +1,3 @@
-## class definition?
-## remove first element of array?
-## class vs instance methods?
-
 class BinaryTreeNode
     attr_accessor :value, :left, :right
     def initialize(value)
@@ -10,21 +6,27 @@ class BinaryTreeNode
         @right = nil
     end
 
-    def self.insert(value)
-        new_node = BinarySearchTree(value)
+    def insert(value)
+        new_node = BinaryTreeNode.new(value)
         if new_node.value < @value
             if @left.nil?
                 @left = new_node
             else
                 @left.insert(value)
             end
+        else
+            if @right.nil?
+                @right = new_node
+            else
+                @right.insert(value)
+            end
         end
     end
 
-    def self.contains(value)
+    def contains(value)
         if value == @value
             return true
-        elsif (value < @value)
+        elsif value < @value
             if @left.nil?
                 return false
             else
@@ -39,29 +41,29 @@ class BinaryTreeNode
         end
     end
 
-    def self.DFS_traversal(traversal_proc, order = 'in')
-        if (order == 'pre')
+    def DFS_traversal(traversal_proc, order = 'in')
+        if order == 'pre'
             traversal_proc.call(self)
         end
-        if (@left)
+        unless @left.nil?
             @left.DFS_traversal(traversal_proc, order)
         end
-        if (order == 'in')
+        if order == 'in'
             traversal_proc.call(self)
         end
-        if (@right)
+        unless @right.nil?
             @right.DFS_traversal(traversal_proc, order)
         end
-        if (order == 'post')
-            @right.DFS_traversal(traversal_proc, order)
+        if order == 'post'
+            traversal_proc.call(self)
         end
     end
 
-    def self.BFS_traversal(traversal_proc)
+    def BFS_traversal(traversal_proc)
         processing_queue = [self]
         loop do
             break if processing_queue.length == 0
-            current_node = processing_queue.pop
+            current_node = processing_queue.shift
             traversal_proc.call(current_node)
             if (current_node.left)
                 processing_queue.push(current_node.left)
@@ -82,13 +84,16 @@ class BinaryTreeNode
 end
 
 class BinarySearchTree
+
+    attr_accessor :root 
+
     def initialize
         @root = nil
     end
 
     def add(value)
         if @root.nil?
-            @root = BinaryTreeNode(value)
+            @root = BinaryTreeNode.new(value)
         else
             @root.insert(value)
         end
@@ -113,19 +118,18 @@ class BinarySearchTree
                     return node.left
                 end
 
-                min = node.get_min
+                min = node.right.get_min
                 node.value = min
                 node.right = remove_node(node.right, min)
             elsif (value < node.value)
                 node.left = remove_node(node.left, value)
-                return node;
             else
                 node.right = remove_node(node.right, value)
-                return node
             end
         end
 
         @root = remove_node(@root, value)
+
     end
 
     def get_height(node = @root)
@@ -134,7 +138,7 @@ class BinarySearchTree
         else
             left_height = get_height(node.left)
             right_height = get_height(node.right)
-            max(left_height, right_height) + 1
+            [left_height, right_height].max + 1
         end
     end
 
@@ -146,10 +150,18 @@ class BinarySearchTree
         left_height = get_height(node.left)
         right_height = get_height(node.right)
 
-        if abs(left_height - right_height) > 1
+        if (left_height - right_height).abs > 1
             return false
         else
             return is_balanced(node.left) && is_balanced(node.right)
         end
+    end
+
+    def DFS(traversal_proc, order = 'in')
+        @root.DFS_traversal(traversal_proc, order)
+    end
+
+    def BFS(traversal_proc)
+        @root.BFS_traversal(traversal_proc)
     end
 end
