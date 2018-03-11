@@ -87,6 +87,13 @@ class HashSet extends HashTable {
                 newSet.add(currentValue);
             }
         }
+        const otherSetValues = otherSet.values();
+        for (let i = 0; i < otherSetValues.length; i++) {
+            if (!this.contains(otherSetValues[i])) {
+                newSet.add(otherSetValues[i]);
+            }
+        }
+
         return newSet;
     }
 }

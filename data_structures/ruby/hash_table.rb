@@ -77,6 +77,7 @@ class HashTable
             this.buckets[target_bucket] = current_node.next
             deleted_node = node_to_delete
             node_to_delete = nil
+            @size -= 1
             return deleted_node
         else
             while current_node
@@ -87,6 +88,7 @@ class HashTable
                     previous_node.next = current_node.next
                     deleted_node = node_to_delete
                     node_to_delete = nil
+                    @size -= 1
                     return deleted_node
                 end
             end
