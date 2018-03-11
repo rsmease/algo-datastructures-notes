@@ -116,7 +116,7 @@ class HashTable {
             while (currentNode) {
                 previousNode = currentNode;
                 currentNode = currentNode.next;
-                if (currentNode.key === keyString) {
+                if (currentNode && currentNode.key === keyString) {
                     nodeToDelete = currentNode;
                     previousNode.next = currentNode.next;
                     deletedNode = nodeToDelete;
