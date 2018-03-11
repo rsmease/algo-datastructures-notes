@@ -6,7 +6,7 @@
 
 class LRUCacheInefficient {
     constructor(capacity = 0) {
-        this.capacity = limit;
+        this.capacity = capacity;
         this.entries = {};
         this.keys = [];
         this.size = this.entries.size;
