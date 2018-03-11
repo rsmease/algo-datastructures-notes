@@ -35,7 +35,7 @@ class SinglyLinkedList
         current_position = 1
 
         if position > @length || position < 1
-            raise ArgumentError, "Position must be within range(0, #{@length})"
+            raise ArgumentError, "Position must be within range(0, #{@length}) or list is currently empty"
         end
 
         until current_position == position

@@ -15,7 +15,7 @@ class DoublyLinkedNode {
     }
 }
 
-class DoublyLinedList {
+class DoublyLinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
