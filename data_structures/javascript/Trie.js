@@ -103,7 +103,7 @@ class Trie {
             }
         }
         let results = [];
-        this.retrieveAllWithPrefix(prefix, results);
+        this.retrieveAllWithPrefix(currentNode, results);
         return results.reverse();
     }
 

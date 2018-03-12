@@ -86,4 +86,22 @@ class Trie
             end
         end
     end
+
+    def search_by_prefix(prefix)
+        current_node = @root
+        prefix.each_char do |char|
+            if current_node.children[char]
+                current_node = current_node[char]
+            else
+                return []
+            end
+        end
+        search_results = []
+        retrieve_all_with_prefix(current_node, search_results)
+        return search_results.reverse
+    end
+
+    def retrieve_all_with_prefix(prefix_end_node, results)
+
+    end
 end
