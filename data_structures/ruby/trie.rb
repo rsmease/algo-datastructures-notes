@@ -69,6 +69,7 @@ class Trie
                 if word.length > 1
                     if current_node.children[char].prefixes == 1
                         current_node.children.delete(char)
+                        @word_count -= 1
                     else
                         current_node = current_node.children[char]
                         remove_helper(word.drop(1), current_node)

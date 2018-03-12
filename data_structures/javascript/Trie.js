@@ -76,6 +76,7 @@ class Trie {
             if (remainder) {
                 if (currentNode.children[char].prefixes === 1) {
                     delete currentNode.children[char];
+                    this.wordCount--;
                 } else {
                     currentNode = currentNode.children[char];
                     this.removeUtil(remainder, currentNode);
