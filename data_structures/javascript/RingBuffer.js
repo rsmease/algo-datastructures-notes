@@ -17,7 +17,6 @@ class RingBuffer {
     constructor(capacity, evictedCb) {
         this.elements = new Array(capacity || 50);
         this.first = 0;
-        this.last = 0;
         this.size = 0;
         this.evictedCb = evictedCb;
     }
@@ -94,7 +93,6 @@ class RingBuffer {
         } else {
             this.size++;
         }
-
         return this.size();
     }
 }
