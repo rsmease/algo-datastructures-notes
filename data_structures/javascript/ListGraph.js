@@ -43,6 +43,7 @@ class ListGraph {
 
         this.edges[vertex1].splice(deletionIndex1, 1);
         this.edges[vertex2].splice(deletionIndex2, 1);
+        this.numberOfEdges--;
     }
 
     size() {
