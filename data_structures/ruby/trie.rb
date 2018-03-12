@@ -102,6 +102,56 @@ class Trie
     end
 
     def retrieve_all_with_prefix(prefix_end_node, results)
+        if prefix_end_node.word_end?
+            results.push(prefix_end_node.build_word)
+        else
+            prefix_end_node.children.each do |child|
+                retrieve_all_with_prefix(child, results)
+            end
+        end
+    end
 
+    def print_trie
+        new_line = TrieNode.new('|')
+        processing_queue = [@root, new_line]
+        result_string = ""
+
+        until processing_queue.length == 0
+            current_node = processing_queue.shift 
+            if current_node.key
+                result_string += current_node.key + " "
+            end
+            if current_node.key == '|' && processing_queue.length > 0
+                processing_queue.push(new_line)
+            end
+            if current_node.children.size > 0
+                current_node.children.keys.each do |child|
+                    processing_queue.push(current_node[child])
+                end
+            end
+        end
+
+        return result_string
+    end
+
+    def print_trie_by_depth 
+        new_line = TrieNode.new("\n")
+        processing_queue = [@root, new_line]
+        result_string = ""
+
+        until processing_queue.empty?
+            current_node = processing_queue.shift 
+            if current_node.key
+                result_string += current_node.key + (current_node.key == "\n" ? " " : "")
+            end
+            if (current_node.key == "\n" && !processing_queue.empty?)
+                processing_queue.push(new_line)
+            end
+            if current_node.children.size > 0
+                current_node.children.keys.each do |child|
+                    processing_queue.push(current_node.children[child])
+                end
+            end
+        end
     end
 end
