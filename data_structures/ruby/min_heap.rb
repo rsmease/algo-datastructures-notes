@@ -38,7 +38,7 @@ class MinHeap
             end
 
             if @heap[index] > @heap[child_2] && @heap[child_1].nil? ||
-                !@heap.child.nil? && @heap[child_1] > @heap[child2]
+                !@heap.child_1.nil? && @heap[child_1] > @heap[child2]
                 index_to_swap = child_2
             end
 
