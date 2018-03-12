@@ -112,5 +112,4 @@ class ListGraph
             return final_path.reverse.join('-')
         end
     end
-
 end
