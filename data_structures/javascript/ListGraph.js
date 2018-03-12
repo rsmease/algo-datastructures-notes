@@ -123,7 +123,7 @@ class ListGraph {
             return undefined;
         }
         const finalPath = [];
-        for (let j = vertex2; j != vetex1; j = paths[j]) {
+        for (let j = vertex2; j != vertex1; j = paths[j]) {
             path.push(j);
         }
         return path.reverse().join('-');
