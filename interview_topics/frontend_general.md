@@ -20,8 +20,8 @@
 
 - Allow for descriptive, hyphen-separated url text
 - Add media queries, flexbox and CSS grid to meet Google's mobile friendly requirements
-- Add alt-text to images to ensure that they're index in Google Image search
-- Make your page easy to navigate, using HTML5 semantic tags
+- Add alt-text to images to ensure that they're indexed in Google Image search
+- Make your page easy to navigate by using HTML5 semantic tags
 
 ## Security Concerns
 
