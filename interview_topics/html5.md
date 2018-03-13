@@ -9,7 +9,7 @@
 
 - For small sites like I have build, store options hashes / JSON objects keyed to browser language choices and inject the appropriate languages in all fields depending on user selection
     - You can also add a script to match the user's browser language
-- Beyong language,  think about formatting and have a flexible grid that can be flipped for users that are accessing the content in a right-to-left language context
+- Beyond language,  think about formatting and have a flexible grid that can be flipped for users that are accessing the content in a right-to-left language context
 
 ## DOM Node Property vs. HTML Attribute
 
