@@ -82,7 +82,7 @@
 ## Box Model
 
 - Content, padding, border and margin
-- Box-sizing will allow you to include or disclude the border and padding from the dimensions of the box
+- Box-sizing will allow you to include or exclude the border and padding from the dimensions of the box
 - Border-box adds both padding and border to the box's dimensions
 
 ## Non-standard fonts
@@ -93,7 +93,7 @@
 
 ## CSS Selector Traversal
 
-- This happens right to left, not left to write
+- This happens right to left, not left to right
 - This allows for more efficient parsing of large rulesets because it allows for quick elimination of styles that do not apply to a particular component
 - If read left to write, the browser would traverse the tree more frequently before discovering that the final piece of the rule excluded the search from consideration in the first place
 
