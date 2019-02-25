@@ -46,6 +46,6 @@ var addTwoNumbers = function (l1, l2) {
 };
 
 // NOTES:
-// not an organi solution, needed to review others' work for guidance
+// not an organic solution, needed to review others' work for guidance
 // runtime: O(n) where n is Math.max(l1.length, l2.length)
 // memory: n where n is Math.max(l1.length, l2.length) (l1, l2, result, currentHead)
