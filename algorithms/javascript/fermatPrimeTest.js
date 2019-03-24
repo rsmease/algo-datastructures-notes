@@ -19,11 +19,21 @@ const remainerAfterExpotentiation = (base, exponent, modulo) => {
   }
   let next;
   if (exponent % 2 === 0) {
-    next = remainerAfterExpotentiation(base, exponent / 2, modulo) * remainerAfterExpotentiation(base, exponent / 2, modulo)
+    next = millerRabinTest(remainerAfterExpotentiation(base, exponent / 2, modulo), modulo) * millerRabinTest(remainerAfterExpotentiation(base, exponent / 2, modulo), modulo)
   } else {
     next = base * remainerAfterExpotentiation(base, exponent - 1, modulo);
   }
   return next % modulo;
+}
+
+const millerRabinTest = (exponent, n) => {
+  if (exponent === 1 || exponent + 1 === n) {
+    return exponent;
+  }
+  if ((exponent * exponent) % n === 1) {
+    return 0;
+  }
+  return exponent;
 }
 
 console.log(isPrime(2465))
