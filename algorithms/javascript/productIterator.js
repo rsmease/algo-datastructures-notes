@@ -18,4 +18,13 @@ const times = (a, b) => {
 const multiplyRange = (a, b) => productIterator(a, b);
 const factorial = (n) => multiplyRange(1, n);
 
+const applicator = (func, ...inputs) => {
+  return func(...inputs);
+}
+
+// const applicatorWithFilter = (applicator, filter) => {
+//   if (filter) {
+//     return applicator(...inputs)
+//   }
+// }
 
