@@ -1,3 +1,5 @@
+// note: quadrilateral class is not working to spec
+
 class Line {
   constructor(start, end) {
     this.start = start,
