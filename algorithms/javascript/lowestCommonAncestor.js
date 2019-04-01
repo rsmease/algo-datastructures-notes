@@ -59,5 +59,4 @@ var lowestCommonAncestor = function (root, p, q) {
 
   // if we found something in both sides of the tree, return the parent
   return root;
-
 }
