@@ -1,5 +1,6 @@
 var lowestCommonAncestor = function (root, p, q) {
   let result = root;
+
   const leftCondition =
     root.left
     && hasChild(root.left, p)
@@ -11,25 +12,25 @@ var lowestCommonAncestor = function (root, p, q) {
     && hasChild(root.right, q);
 
   if (leftCondition) {
-    result = lowestCommonAncestor(root.left);
+    result = lowestCommonAncestor(root.left, p, q);
     return result;
   }
 
   if (rightCondition) {
-    result = lowestCommonAncestor(root.right);
+    result = lowestCommonAncestor(root.right, p, q);
     return result;
   }
 
   return result;
 };
 
-var hasChild = function (node, targetValue) {
+var hasChild = function (node, child) {
   if (!node) {
     return false;
   }
   return (
-    node.val === targetVal
-    || hasChild(node.left, targetValue)
-    || hasChild(node.right, targetValue)
+    node.val === child.val
+    || hasChild(node.left, child)
+    || hasChild(node.right, child)
   );
 }
