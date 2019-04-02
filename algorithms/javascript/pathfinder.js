@@ -5,40 +5,47 @@
 
 // TODO: improve how I'm processing these items / sticking them in the queue
 var wallsAndGates = function (grid) {
-  const processingQueue = [];
-  const seenItems = {};
-  const INF = 2147483647;
+  const queue = initializeQueue(grid);
 
-  grid.forEach((row, i) => {
-    row.forEach((node, j) => {
-      if (grid[i][j] === 0) {
-        processingQueue.push([i, j]);
-      }
-    })
-  });
+  const GRID_WIDTH = grid[0].length;
+  const UNASSIGNED = 2147483647;
+
+  var validUnseenNode = function (row, col) {
+    return row >= 0 && row < GRID_WIDTH && grid[row][col] === UNASSIGNED;
+  }
 
   let distance = 0;
   let nodesInQueue, currentNode;
 
-  var addAdjacentNodes = function (current) {
-    processingQueue.push(grid[current[0]][current[1] - 1]);
-    processingQueue.push(grid[current[0]][current[1] + 1]);
-    processingQueue.push(grid[current[0] - 1][current[1]]);
-    processingQueue.push(grid[current[0] + 1][current[1]]);
-  }
-
   while (processingQueue.length) {
     nodesInQueue = processingQueue.length;
+
     for (let i = 0; i < nodesInQueue; i++) {
-      currentNode = processingQueue.shift();
-      currentNode = grid[currentNode[0]][currentNode[1]];
-      if (typeof currentNode !== 'undefined' && currentNode !== -1 && currentNode >= distance) {
-        addAdjacentNodes(currentNode);
-        grid[currentNode[0]][currentNode[1]] = distance;
-      }
+      const { row, col } = processingQueue.shift();
+
+      validUnseenNode(row, col + 1) && processingQueue.push({ row: row, col: col + 1 });
+      validUnseenNode(row, col - 1) && processingQueue.push({ row: row, col: col - 1 });
+      validUnseenNode(row + 1, col) && processingQueue.push({ row: row + 1, col: col });
+      validUnseenNode(row - 1, col) && processingQueue.push({ row: row - 1, col: col });
+
+      grid[row][col] = distance;
     }
+
     distance++;
   }
 
   return grid;
 };
+
+var initializeQueue = function (grid) {
+  const queue = [];
+  grid.forEach((row, i) => {
+    row.forEach((node, j) => {
+      if (grid[i][j] === 0) {
+        processingQueue.push({ row: i, col: j });
+      }
+    })
+  });
+  return queue;
+}
+
