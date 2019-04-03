@@ -1,7 +1,6 @@
 var openLock = function (deadends, target) {
   //generated visited set, add deadends to set
-  const visited = new Set();
-  deadends.forEach((deadend) => visited.add(deadend));
+  const visited = new Set(deadends);
 
   const start = "0000";
 
@@ -44,8 +43,6 @@ var adjacentPaths = (currentPath) => {
     combinationPaths.push(incrementString(currentPath, digit, i));
     combinationPaths.push(decrementString(currentPath, digit, i));
   })
-
-  console.log(combinationPaths);
   return combinationPaths;
 }
 
@@ -58,5 +55,3 @@ var incrementString = (string, digit, i) => {
 var decrementString = (string, digit, i) => {
   return string.substring(0, i) + decrement(digit) + string.substring(i + 1);
 }
-
-console.log(openLock(["0201", "0101", "0102", "1212", "2002"], "0202"))
