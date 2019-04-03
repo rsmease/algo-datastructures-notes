@@ -1,59 +1,36 @@
-// NOTE: no working; going to try DFS approach instead
-
 var numIslands = function (grid) {
-  const landNodesQueue = initializeQueue(grid);
-  let currentNode, adjacentIndicator;
-  let islandIndicator = "";
+  const foundFlag = "X";
 
-  var scanNeighbors = function (row, col) {
-    if (isKnownIsland(row, col + 1)) {
-      return grid[row][col + 1];
-    }
-    if (isKnownIsland(row, col - 1)) {
-      return grid[row][col - 1];
-    }
-    if (isKnownIsland(row + 1, col)) {
-      return grid[row + 1][col];
-    }
-    if (isKnownIsland(row - 1, col)) {
-      return grid[row - 1][col];
-    }
-    return false;
+  let count = 0;
+  const incrementCount = (i, j) => {
+    console.log(i, j);
+    count++;
+    return true;
   }
 
-  var isKnownIsland = function (row, col) {
-    if (!(grid[row] && grid[row][col])) {
-      return false;
-    }
-    return !(grid[row][col] === "1" || grid[row][col] === "0");
+  const isIsland = (i, j) => grid[i] && grid[i][j] && grid[i][j] === "1";
+
+  const neighbors = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+  const searchNeighbors = (i, j) => {
+    grid[i][j] = foundFlag;
+    console.log(grid);
+
+    neighbors.forEach((neighbor) => {
+      let [neighborI, neighborJ] = neighbor;
+      neighborI += i;
+      neighborJ += j
+
+      isIsland(neighborI, neighborJ) && searchNeighbors(neighborI, neighborJ);
+    });
   }
 
-  while (landNodesQueue.length) {
-    const { row, col } = landNodesQueue.shift();
-    if (grid[row][col] === "1") {
-      adjacentIndicator = scanNeighbors(row, col);
-      console.log(adjacentIndicator)
-      if (adjacentIndicator) {
-        grid[row][col] = adjacentIndicator;
-      } else {
-        islandIndicator += "x";
-        grid[row][col] = islandIndicator;
-      }
-    }
-  }
-
-  return islandIndicator.length;
-};
-
-var initializeQueue = function (grid) {
-  const queue = [];
   grid.forEach((row, i) => {
     row.forEach((element, j) => {
-      if (grid[i][j] === "1") {
-        queue.push({ row: i, col: j })
-      }
+      isIsland(i, j) && incrementCount(i, j) && searchNeighbors(i, j);
     })
-  })
-  return queue;
+  });
+
+  return count;
 }
+
 
