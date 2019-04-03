@@ -1,7 +1,9 @@
+// NOTE: no working; going to try DFS approach instead
+
 var numIslands = function (grid) {
   const landNodesQueue = initializeQueue(grid);
   let currentNode, adjacentIndicator;
-  let islandIndicator = "x";
+  let islandIndicator = "";
 
   var scanNeighbors = function (row, col) {
     if (isKnownIsland(row, col + 1)) {
@@ -20,31 +22,34 @@ var numIslands = function (grid) {
   }
 
   var isKnownIsland = function (row, col) {
-    if (row < 0 || col < 0 || row > grid[0].length || col > grid.length) {
+    if (!(grid[row] && grid[row][col])) {
       return false;
     }
-    return typeof grid[row][col] === "string";
+    return !(grid[row][col] === "1" || grid[row][col] === "0");
   }
 
   while (landNodesQueue.length) {
     const { row, col } = landNodesQueue.shift();
-    if (grid[row][col] === 1) {
+    if (grid[row][col] === "1") {
       adjacentIndicator = scanNeighbors(row, col);
+      console.log(adjacentIndicator)
       if (adjacentIndicator) {
         grid[row][col] = adjacentIndicator;
       } else {
-        grid[row][col] = islandIndicator;
         islandIndicator += "x";
+        grid[row][col] = islandIndicator;
       }
     }
   }
+
+  return islandIndicator.length;
 };
 
 var initializeQueue = function (grid) {
   const queue = [];
   grid.forEach((row, i) => {
     row.forEach((element, j) => {
-      if (grid[i][j] === 1) {
+      if (grid[i][j] === "1") {
         queue.push({ row: i, col: j })
       }
     })
