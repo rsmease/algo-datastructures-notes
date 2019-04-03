@@ -7,31 +7,39 @@
 var wallsAndGates = function (grid) {
   const queue = initializeQueue(grid);
 
-  const GRID_WIDTH = grid[0].length;
-  const UNASSIGNED = 2147483647;
+  const UNASSIGNED_FLAG = 2147483647;
 
   var validUnseenNode = function (row, col) {
-    return row >= 0 && row < GRID_WIDTH && grid[row][col] === UNASSIGNED;
+    return validNodePosition(row, col) && grid[row][col] === UNASSIGNED_FLAG;
   }
 
-  let distance = 0;
-  let nodesInQueue, currentNode;
+  var validNodePosition = function (row, col) {
+    return row >= 0 && col >= 0 && row < grid.length && col < grid[0].length;
+  }
 
-  while (processingQueue.length) {
-    nodesInQueue = processingQueue.length;
+  var neighbors = function (row, col) {
+    return [[row, col + 1], [row, col - 1], [row + 1, col], [row - 1, col]];
+  }
+
+  let nodesInQueue, currentNode, nodeNeighbors;
+
+  while (queue.length) {
+    nodesInQueue = queue.length;
 
     for (let i = 0; i < nodesInQueue; i++) {
-      const { row, col } = processingQueue.shift();
+      const { row, col } = queue.shift();
+      currentNode = grid[row][col];
+      nodeNeighbors = neighbors(row, col);
 
-      validUnseenNode(row, col + 1) && processingQueue.push({ row: row, col: col + 1 });
-      validUnseenNode(row, col - 1) && processingQueue.push({ row: row, col: col - 1 });
-      validUnseenNode(row + 1, col) && processingQueue.push({ row: row + 1, col: col });
-      validUnseenNode(row - 1, col) && processingQueue.push({ row: row - 1, col: col });
+      nodeNeighbors.forEach((neighbor) => {
+        const [nRow, nCol] = neighbor;
 
-      grid[row][col] = distance;
+        if (validUnseenNode(nRow, nCol)) {
+          queue.push({ row: nRow, col: nCol });
+          grid[nRow][nCol] = currentNode + 1;
+        }
+      })
     }
-
-    distance++;
   }
 
   return grid;
@@ -42,10 +50,12 @@ var initializeQueue = function (grid) {
   grid.forEach((row, i) => {
     row.forEach((node, j) => {
       if (grid[i][j] === 0) {
-        processingQueue.push({ row: i, col: j });
+        queue.push({ row: i, col: j });
       }
     })
   });
   return queue;
 }
+
+
 
