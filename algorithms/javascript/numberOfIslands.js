@@ -2,8 +2,7 @@ var numIslands = function (grid) {
   const foundFlag = "X";
 
   let count = 0;
-  const incrementCount = (i, j) => {
-    console.log(i, j);
+  const incrementCount = () => {
     count++;
     return true;
   }
@@ -13,7 +12,6 @@ var numIslands = function (grid) {
   const neighbors = [[0, 1], [0, -1], [1, 0], [-1, 0]];
   const searchNeighbors = (i, j) => {
     grid[i][j] = foundFlag;
-    console.log(grid);
 
     neighbors.forEach((neighbor) => {
       let [neighborI, neighborJ] = neighbor;
@@ -26,7 +24,7 @@ var numIslands = function (grid) {
 
   grid.forEach((row, i) => {
     row.forEach((element, j) => {
-      isIsland(i, j) && incrementCount(i, j) && searchNeighbors(i, j);
+      isIsland(i, j) && incrementCount() && searchNeighbors(i, j);
     })
   });
 
