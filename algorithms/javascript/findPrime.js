@@ -3,8 +3,8 @@ const findSmallestDivisor = (n) => {
 }
 
 const divisorIterator = (n, divisor = 3) => {
-  if (n < 2) {
-    return n;
+  if (n < divisor) {
+    return null;
   }
   if (n % 2 === 0) {
     return 2;
