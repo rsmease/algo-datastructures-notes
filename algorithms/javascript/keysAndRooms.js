@@ -1,7 +1,7 @@
-const canVisitAllRooms = (allRooms, initialRoomIndex = 0) => {
+const canVisitAllRooms = (allRooms, startingIndex = 0) => {
 
-  const visitedIndices = new Set([initialRoomIndex]);
-  const indicesToVisit = [0];
+  const visitedIndices = new Set([startingIndex]);
+  const indicesToVisit = [startingIndex];
 
   let currentRoom, currentIndex;
   while (indicesToVisit.length) {
