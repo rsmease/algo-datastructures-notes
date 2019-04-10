@@ -1,41 +1,41 @@
 const canVisitAllRooms = (rooms) => {
   const roomsWithKnownAccess = new Set();
-  const expectedResult = allKeysSum(rooms.length);
-  const currentResult = 0;
 
-  let availableKeys;
-  rooms.forEach((room) => {
-    availableKeys = getAllAvailableKeys(room);
+  let allRoomsTotal = 0;
+  let deadEndRoomsTotal = 0;
+  let currentRoom;
+  for (let i = 0; i < rooms.length; i++) {
+    currentRoom = rooms[i];
+    if (!currentRoom.length) {
+      deadEndRoomsTotal++;
+    }
+    if (deadEndRoomsTotal > 1) {
+      return false;
+    }
+    allRoomsTotal += i;
+  }
 
-    currentResult += sumOfUnseenKeys(availableKeys);
-    addKeysToSet(availableKeys, roomsWithKnownAccess);
+  let roomsTotal = 0;
+  rooms.forEach((availableKeys, currentRoom) => {
+    let otherRoom;
+    if (!availableKeys.length) {
+      deadEndRoomsTotal++;
+      if (deadEndRoomsTotal > 1) {
+        return false;
+      }
+    }
+
+    for (let j = 0; j < availableKeys.length; j++) {
+      otherRoom = availableKeys[j]
+      if (!(roomsWithKnownAccess.has(otherRoom) || otherRoom === currentRoom)) {
+        roomsTotal += otherRoom;
+        roomsWithKnownAccess.add(otherRoom);
+      }
+    }
   });
 
-  return currentResult === expectedResult;
+  return roomsTotal === allRoomsTotal;
 };
 
-const getAllAvailableKeys = function (room) {
-  return room.length > 1 ? room.slice(1) : [];
-}
-
-const sumOfUnseenKeys = function (newKeys, set) {
-  const unseenKeysTotal = 0;
-  newKeys.forEach((key) => {
-    unseenKeysTotal += set.has(key) ? 0 : key;
-    updateSet(key, set);
-  })
-  return unseenKeysTotal;
-}
-
-const addKeysToSet = (keys, set) => keys.forEach((key) => !set.has(key) && set.add(key));
-
-const allKeysSum = (range) => {
-  total = 0;
-  for (let i = 0; i < range; i++) {
-    total += i;
-  }
-  return total;
-}
-
-console.log(canVisitAllRooms([[1], [2], [3], []]));
+console.log(canVisitAllRooms([[4], [3], [], [2, 5, 7], [1], [], [8, 9], [], [], [6]]));
 
