@@ -1,18 +1,18 @@
-const canVisitAllRooms = (allRooms, startingIndex = 0) => {
+const canVisitAllRooms = (allRooms, initialKey = 0) => {
 
-  const visitedIndices = new Set([startingIndex]);
-  const indicesToVisit = [startingIndex];
+  const usedKeys = new Set([initialKey]);
+  const keysToTest = [initialKey];
 
-  let currentRoom, currentIndex;
-  while (indicesToVisit.length) {
-    currentIndex = indicesToVisit.pop();
-    currentRoom = allRooms[currentIndex];
+  let currentRoom, currentKey;
+  while (keysToTest.length) {
+    currentKey = keysToTest.pop();
+    currentRoom = allRooms[currentKey];
 
-    currentRoom.forEach((otherRoomIndex) => {
-      visitedIndices.has(otherRoomIndex) || indicesToVisit.push(otherRoomIndex);
-      visitedIndices.add(otherRoomIndex);
+    currentRoom.forEach((otherRoomKey) => {
+      usedKeys.has(otherRoomKey) || keysToTest.push(otherRoomKey);
+      usedKeys.add(otherRoomKey);
     });
   }
-  return allRooms.length === visitedIndices.size;
+  return allRooms.length === usedKeys.size;
 };
 
