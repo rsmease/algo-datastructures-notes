@@ -299,11 +299,12 @@ class WeightedDAG extends DirectedAcyclicGraph {
       vertices.insertByPriority(vertex, INFINITY);
     });
 
+    let smallest;
     while (!verticesHeap.isEmpty()) {
       smallest = verticesHeap.extract();
 
       // we found the finish, so we build our path
-      if (smallest === finished) {
+      if (smallest === end) {
 
         pathLength = distances.get(smallest);
 
@@ -329,6 +330,63 @@ class WeightedDAG extends DirectedAcyclicGraph {
       })
     }
 
+    path.push(start);
+    return path;
+  }
+
+  shortestPathWithHeuristicAKAAstar(start, end, heuristic) {
+    const INFINITY = Number.MAX_SAFE_INTEGER;
+    const verticesHeap = new PriorityQueue();
+    const distances = new Map();
+    const parents = new Map();
+    const path = [];
+    let pathLength = 0;
+
+    // add vertices to priority queue, distances list
+    this.vertices.forEach((vertex) => {
+      parents.set(vertex, null);
+      distances.set(
+        vertex,
+        vertex === start ? 0 : INFINITY
+      )
+      verticesHeap.insertByPriority(
+        vertex,
+        vertex === start ? 0 : INFINITY
+      )
+    });
+
+    let nearest;
+    while (!verticesHeap.isEmpty()) {
+      nearest = verticesHeap.extract();
+
+      if (nearest === end) {
+        while (parents.get(nearest)) {
+          path.push(nearest);
+          nearest = parents.get(nearest);
+        }
+      }
+
+      if (!nearest || distances.get(nearest) === INFINITY) {
+        continue;
+      }
+
+      let alternativeRoute, alternativeHeuristic;
+      let defaultRoute, defaultHeuristic;
+      this.vertexEdges(nearest).forEach((otherVertex) => {
+        alternativeRoute = distances.get(nearest) + this.edges[nearest].get(otherVertex);
+        alternativeHeuristic = heuristic(otherVertex, end);
+
+        defaultRoute = distances.get(otherVertex);
+        defaultHeuristic = heuristic(start, end);
+        if (alternativeHeuristic < defaultHeuristic
+          || (alternativeHeuristic === defaultHeuristic && alternativeRoute < defaultRout)
+        ) {
+          distances.set(otherVertex, alterativeRoute);
+          parents.set(otherVertex, nearest);
+          verticesHeap.insertByPriority(otherVertex, alternativeRoute)
+        }
+      })
+    }
     path.push(start);
     return path;
   }
