@@ -1,3 +1,6 @@
+//NOTE: this is just a new implementation of ListGraph.js
+// in some ways, it is more efficient
+
 class NewListGraph {
   constructor() {
     this.vertices = new Set();
