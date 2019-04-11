@@ -334,6 +334,8 @@ class WeightedDAG extends DirectedAcyclicGraph {
     return path;
   }
 
+  // only pursue nodes wehre the overall heuristic is optimal
+  // e.g. when plotting a path on a map, first look at routes that move us closer to the end
   shortestPathWithHeuristicAKAAstar(start, end, heuristic) {
     const INFINITY = Number.MAX_SAFE_INTEGER;
     const verticesHeap = new PriorityQueue();
