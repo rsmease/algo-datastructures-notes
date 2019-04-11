@@ -29,11 +29,11 @@ class LRUCacheInefficient {
             if (!this.remainingCapacity()) {
                 let i = 0;
                 let removedKey = this.keys[i];
-                while (!removedKey) {
+                while (typeof removedKey === 'undefined') {
                     i++;
                     removedKey = this.keys[i];
                 }
-                delete this.entries[key];
+                delete this.entries[removedKey];
             }
 
             this.entries[key] = value;
