@@ -4,7 +4,7 @@
 //If a path exists between all vertices of a graph, it is called conected
 //If there is a path from every vertex to every other vertex, it is strongly connected
 //We have two ways to search a graph: BFS and DFS
-//DFS is preferable when we think that our target is somewhere far from our starting point; BFS is more useful when we think that the target is only a few degrees of separate from the starting point 
+//DFS is preferable when we think that our target is somewhere far from our starting point; BFS is more useful when we think that the target is only a few degrees of separate from the starting point
 
 
 //This graph is unweighted;
@@ -87,8 +87,8 @@ class ListGraph {
     DFSTraveral(startingVertex, processingCb, visitedVertices = {}) {
         visitedVertices[startingVertex] = true;
         processingCb(startingVertex);
-        if (this.vertexEdges(this.startingVertex).length) {
-            this.vertexEdges(this.startingVertex).forEach(vertex => {
+        if (this.vertexEdges(startingVertex).length) {
+            this.vertexEdges(startingVertex).forEach(vertex => {
                 if (!visitedVertices[vertex]) {
                     this.DFSTraveral(vertex, processingCb, visitedVertices)
                 }
