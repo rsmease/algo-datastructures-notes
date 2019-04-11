@@ -273,6 +273,7 @@ class WeightedDAG extends DirectedAcyclicGraph {
   }
 
 
+  // linear with respect to the number of vertices
   shortestPathAKADykstra(start, end) {
     if (!this.vertices.has(start) || !this.vertices.has(end)) {
       throw "Missing one or more vertices";
@@ -336,6 +337,7 @@ class WeightedDAG extends DirectedAcyclicGraph {
 
   // only pursue nodes wehre the overall heuristic is optimal
   // e.g. when plotting a path on a map, first look at routes that move us closer to the end
+  // linear with respect to the number of vertices, unless the heuristic adds complexity
   shortestPathWithHeuristicAKAAstar(start, end, heuristic) {
     const INFINITY = Number.MAX_SAFE_INTEGER;
     const verticesHeap = new PriorityQueue();
