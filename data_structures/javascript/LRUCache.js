@@ -58,7 +58,7 @@ class LRUCacheInefficient {
 
     //O(1)
     remainingCapacity() {
-        return this.capaicity - this.size;
+        return this.capacity - this.size;
     }
 }
 
@@ -129,6 +129,6 @@ class LRUCacheEfficient extends LRUCacheInefficient {
         if (!this.tail) {
             this.tail = newNode;
         }
-        this.entries[key] = newNode;
+        this.entries[key] = value;
     }
 }
