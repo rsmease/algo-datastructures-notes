@@ -164,6 +164,6 @@ class ConstantLRUCache extends LinearLRUCache {
 
   // constant
   get(key) {
-    return this.entries.get(key);
+    return this.entries.get(key).value;
   }
 }
