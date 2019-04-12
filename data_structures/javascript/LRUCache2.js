@@ -127,25 +127,15 @@ class ConstantLRUCache extends LinearLRUCache {
 
   // constant
   set(key, value) {
+    const newestNode = new LRUNode(key, value);
+
     if (this.entries.has(key)) {
-      this.entries.set(key, value);
+      this.entries.set(key, newestNode);
       this.udpateKeyPriortity(key);
       return true;
     }
 
-    const newestNode = new LRUNode(key, value);
-
-    if (!this.hasSpareCapacity()) {
-      // find oldest key, remove related pointers
-      const keyToDelete = this.oldest.key;
-      this.oldest = this.oldest.newer;
-
-      // will be false if there is only one item in the keys list
-      if (this.oldest) {
-        this.tail.older = null;
-      }
-      this.entries.delete(keyToDelete);
-    }
+    !this.hasSpareCapacity() && this.evictNewest();
 
     newestNode.older = this.newest;
     // will return false if this is the only entry
@@ -164,6 +154,19 @@ class ConstantLRUCache extends LinearLRUCache {
 
   // constant
   get(key) {
+    this.udpateKeyPriortity(key);
     return this.entries.get(key).value;
+  }
+
+  // constant
+  evictOldest() {
+    const keyToDelete = this.oldest.key;
+    this.oldest = this.oldest.newer;
+
+    // will be false if there is only one item in the keys list
+    if (this.oldest) {
+      this.oldest.older = null;
+    }
+    this.entries.delete(keyToDelete)
   }
 }
