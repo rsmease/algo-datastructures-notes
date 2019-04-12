@@ -129,6 +129,6 @@ class LRUCacheEfficient extends LRUCacheInefficient {
         if (!this.tail) {
             this.tail = newNode;
         }
-        this.entries[key] = value;
+        this.entries[key] = newNode;
     }
 }

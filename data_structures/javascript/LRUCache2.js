@@ -159,7 +159,7 @@ class ConstantLRUCache extends LinearLRUCache {
       this.oldest = newestNode;
     }
 
-    this.entries.set(key, value)
+    this.entries.set(key, newestNode)
   }
 
   // constant
