@@ -1,6 +1,6 @@
 //When to use each sort:
 
-//Quick sort: 
+//Quick sort:
 //You don't need a stable sort and average runtime is most important
 //Uses up to O(n**2) time and around O(n*log(n)) of call stack memory
 //Preferred method of sorting arrays because its moves through adjacent elements (better locality of reference) than merge sort, which ends up scanning a variety of arrays when it's not in-place
@@ -12,7 +12,7 @@
 // It's the prefer sort of linked lists, where only O(log(n)) extra space is needed
 
 //Heap sort:
-//You don't need a stable sort and you care more about worst case perfromance
+//You don't need a stable sort and you care more about worst case performance
 //Guaranteed to be O(n*log(n)) and uses constant auxiliary space
 
 //Introsort:
@@ -29,31 +29,40 @@
 //Radix sort
 //Where log(n) is larger than K, where K is the number of radix digits
 
+const isLessThan = (a, b) => a < b;
 
-
-function mergeSort(array, comparatorCb) {
+const mergeSort = (array, comparatorCb = isLessThan) => {
     if (array.length <= 1) {
         return array;
     }
 
-    let first = array.slice(0, Math.floor(array.length / 2));
-    let second = array.slice(Math.floor(array.length / 2));
+    const median = Math.floor(array.length / 2);
+    const leftHalf = array.slice(0, median);
+    const rightHalf = array.slice(median);
 
-    return merge(mergeSort(first), mergeSort(second), comparatorCb);
+    return merge(mergeSort(leftHalf), mergeSort(rightHalf), comparatorCb);
 }
 
-function merge(array1, array2, comparatorCb) {
-    let newArray = [];
+const merge = (array1, array2, comparatorCb) => {
+    const newArray = [];
 
-    //remove from end to presere O(1) operation time
-    while (array1.length && array2.length) {
-        if (comparatorCb(array1, arry2)) {
-            newArray.push(array1.pop());
+    let firstPointer = secondPointer = 0;
+    let currentFirst, currentSecond, predicate;
+    while (firstPointer < array1.length && secondPointer < array2.length) {
+        currentFirst = array1[firstPointer];
+        currentSecond = array2[secondPointer];
+
+        predicate = comparatorCb(currentFirst, currentSecond);
+        if (predicate) {
+            newArray.push(currentFirst);
+            firstPointer++
         } else {
-            newArray.push(array2.pop());
+            newArray.push(currentSecond);
+            secondPointer++;
         }
     }
-    //these will bubble up in the call stack to already sorted, if they remain
-    //first 1 -> return, then 2 -> remainder is sorted by default, then n -> composed of sorted substructures
-    return array1.length ? newArray.concat(array1) : newArray.concat(array2);
+    return newArray.concat(array1.slice(firstPointer), array2.slice(secondPointer));
 }
+
+const testArray = [4, 1, 2, 12, 4, 16, 8, 7];
+console.log(mergeSort(testArray));
