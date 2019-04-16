@@ -1,28 +1,32 @@
-const trap = (heightArray) => {
-  if (heightArray.length < 3) {
+const trap = (heights) => {
+  if (heights.length < 3) {
     return 0;
   }
 
-  const peaks = [];
-  const isPeak = (i) => heightArray[i] >= heightArray[i - 1] && heightArray[i] >= heightArray[i + 1];
+  let leftPointer, leftPeak, leftHeight;
+  let rightPointer, rightPeak, rightHeight;
 
-  for (let i = 1; i < heightArray.length - 1; i++) {
-    isPeak(i) && peaks.push(i);
+  leftPointer = 0;
+  rightPointer = heights.length - 1;
+
+  let totalWaterCollected = 0;
+  while (leftPointer < rightPointer) {
+    leftHeight = heights[leftPointer];
+    rightHeight = heights[rightPointer];
+
+    leftPeak = Math.max(leftHeight, leftPeak || 0);
+    rightPeak = Math.max(rightHeight, rightPeak || 0);
+
+    totalWaterCollected += leftPeak > leftHeight ? leftPeak - leftHeight : 0;
+    totalWaterCollected += rightPeak > rightHeight ? rightPeak - rightHeight : 0;
+
+    leftHeight < rightHeight ? leftPointer++ : rightPointer--;
   }
-
-  const collectWater = (i, j) => {
-    const lesserPeak = Math.min(heightArray[i], heightArray[j]);
-    let valleyWaterLevel = lesserPeak * (j - i - 1);
-
-    for (let valley = i + 1; valley < j; valley++) {
-      valleyWaterLevel -= heightArray[valley];
-    }
-    return valleyWaterLevel;
-  }
-
-  let totalWater = 0;
-  for (let peak = 0; peak < peaks.length - 1; peak++) {
-    totalWater += collectWater(peaks[peak], peaks[peak + 1])
-  }
-  return totalWater;
+  return totalWaterCollected;
 };
+
+const tests = new Set();
+tests.add([2, 0, 2]);
+tests.add([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
+tests.add([5, 4, 1, 2])
+tests.forEach((test) => console.log(trap(test)));
