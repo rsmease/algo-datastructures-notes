@@ -28,6 +28,42 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
  * @return {number[]}
  */
 
-const spiralOrder = (matrix) => {
+const spiralOrder = (matrix, result = []) => {
+  if (!matrix.length) {
+    return result;
+  }
 
+  // add first row to result
+  result = result.concat(matrix.shift())
+
+  let currentRow;
+  for (let i = 0; i < matrix.length; i++) {
+    currentRow = matrix[i];
+
+    if (!currentRow.length) {
+      return result;
+    }
+    result.push(currentRow.pop());
+    currentRow.reverse();
+  }
+
+  // we need to reverse the matrix to maintain the spiral effect
+  matrix.reverse();
+
+  return spiralOrder(matrix, result);
 }
+
+const tests = new Set();
+tests.add([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]);
+
+tests.add([
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12]
+]);
+
+tests.forEach((test) => console.log(spiralOrder(test)))
