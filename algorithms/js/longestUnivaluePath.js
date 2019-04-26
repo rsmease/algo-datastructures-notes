@@ -47,26 +47,31 @@ Note: The given binary tree has not more than 10000 nodes. The height of the tre
  */
 
 const longestUnivaluePath = (root) => {
-  const pathLength = 0;
+  let globalMax = 0;
 
-  const scan = (parent) => {
-    if (!parent) {
+  const search = (node) => {
+    if (!node) {
       return 0;
     }
 
-    let leftValue = 0;
-    let rightValue = 0;
-    if (parent.value === parent.left.value) {
-      leftValue = 1;
+    let leftTotal = search(node.left);
+    let rightTotal = search(node.right);
+
+    // mental metaphor here:
+    // start with the deepest leaves, build the chain as far as you can upward
+    // when you find a break in the chain, cut it and start over
+    // by the time that you reset it, you will have already updated globalMax
+    if (node.left) {
+      leftTotal = node.left.val === node.val ? leftTotal + 1 : 0;
     }
-    if (parent.value === parent.right.value) {
-      rightValue = 1;
+    if (node.right) {
+      rightTotal = node.right.val === node.val ? rightTotal + 1 : 0;
     }
 
-    leftValue += Math.max(scan(parent.left.left), scan(parent.left.right))
-    rightValue += Math.max(scan(parent.right.left), scan(parent.right.right))
-
-    return Math.max(leftValue, rightValue)
+    globalMax = Math.max(globalMax, (leftTotal + rightTotal));
+    return Math.max(leftTotal, rightTotal);
   }
-  return scan(root)
+
+  search(root);
+  return globalMax;
 }
