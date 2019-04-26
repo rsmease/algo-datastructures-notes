@@ -5,8 +5,6 @@ Given a binary tree, find the length of the longest path where each node in the 
 
 The length of path between two nodes is represented by the number of edges between them.
 
-
-
 Example 1:
 
 Input:
@@ -49,5 +47,26 @@ Note: The given binary tree has not more than 10000 nodes. The height of the tre
  */
 
 const longestUnivaluePath = (root) => {
+  const pathLength = 0;
 
+  const scan = (parent) => {
+    if (!parent) {
+      return 0;
+    }
+
+    let leftValue = 0;
+    let rightValue = 0;
+    if (parent.value === parent.left.value) {
+      leftValue = 1;
+    }
+    if (parent.value === parent.right.value) {
+      rightValue = 1;
+    }
+
+    leftValue += Math.max(scan(parent.left.left), scan(parent.left.right))
+    rightValue += Math.max(scan(parent.right.left), scan(parent.right.right))
+
+    return Math.max(leftValue, rightValue)
+  }
+  return scan(root)
 }
