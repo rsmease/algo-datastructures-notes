@@ -22,5 +22,38 @@
  */
 
 const firstMissingPositive = (nums) => {
+  let minPositive = Number.MAX_SAFE_INTEGER;
+  let maxPositive = 0;
+  const seenPositives = new Set();
 
+  nums.forEach((num) => {
+    if (num < 1) {
+      return;
+    }
+
+    minPositive = Math.min(num, minPositive);
+    maxPositive = Math.max(num, maxPositive);
+    seenPositives.add(num)
+  });
+
+  if (minPositive > 1) {
+    return 1;
+  }
+
+  for (let i = minPositive; i <= maxPositive; i++) {
+    if (!seenPositives.has(i)) {
+      return i;
+    }
+  }
+
+  return maxPositive + 1;
 };
+
+const tests = new Set();
+tests.add([1, 2, 0])
+tests.add([3, 4, -1, 1])
+tests.add([7, 8, 9, 11, 12]);
+tests.add([1]);
+tests.add([])
+
+tests.forEach((test) => console.log(firstMissingPositive(test)))
