@@ -21,6 +21,28 @@
  * @return {number}
  */
 
-const findMaxConsecutiveOnes = (nums) => {
+const findMaxConsecutiveOnes = (nums, flips = 0) => {
+  let currentStart = 0;
+  let currentEnd = 0;
+  let flipsAvailable = flips;
+  let maxSpan = 0;
 
+  while (currentEnd < nums.length) {
+    nums[currentEnd] === 0 && flipsAvailable--;
+
+    while (flipsAvailable < flips) {
+      nums[currentStart] === 0 && flipsAvailable++;
+      currentStart++;
+    }
+
+    maxSpan = Math.max((currentEnd - currentStart + 1), maxSpan);
+    currentEnd++;
+  }
+  return maxSpan;
 };
+
+const tests = new Set();
+tests.add([1, 0, 1, 1, 0]);
+tests.add([1, 0, 1, 1, 0, 1]);
+
+tests.forEach((test) => console.log(findMaxConsecutiveOnes(test)))
