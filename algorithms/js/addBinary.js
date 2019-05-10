@@ -39,11 +39,7 @@ var addBinary = function (a, b) {
     bPointer--;
   }
 
-  if (carry) {
-    result = carry.toString() + result;
-  }
-
-  return result;
+  return carry ? carry.toString() + result : result;
 };
 
 tests = new Set();
