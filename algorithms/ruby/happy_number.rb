@@ -24,7 +24,6 @@ def is_happy(n, max_trials = 6)
   current = n
 
   while trials_performed < max_trials
-    # current = current.to_s.split('').reduce(0) { |sum, num| sum + (num.to_i * num.to_i) }
     new_current = 0
 
     while current > 0
